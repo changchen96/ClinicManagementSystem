@@ -5,6 +5,8 @@
  */
 package clinicsystem;
 
+import java.sql.SQLException;
+
 /**
  *
  * @author c7-ong
@@ -16,8 +18,17 @@ public class ClinicSystem {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        LoginGUI loginMenu = new LoginGUI();
-        loginMenu.setVisible(true);
+        try
+        {
+            databaseConn.openConn();
+            LoginGUI loginMenu = new LoginGUI();
+            loginMenu.setVisible(true);
+        }
+        catch(SQLException ex)
+        {
+            System.out.print("Error:");
+            System.out.print(ex);
+        }
         
     }
     

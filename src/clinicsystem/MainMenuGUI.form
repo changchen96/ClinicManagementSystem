@@ -27,13 +27,15 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace pref="35" max="32767" attributes="0"/>
+              <EmptySpace pref="34" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="managePatientBtn" max="32767" attributes="0"/>
                   <Component id="manageAppointmentBtn" max="32767" attributes="0"/>
                   <Component id="manageVisitsBtn" alignment="0" max="32767" attributes="0"/>
+                  <Component id="adminstratorBtn" max="32767" attributes="0"/>
+                  <Component id="generateReportBtn" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="226" max="32767" attributes="0"/>
+              <EmptySpace pref="225" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -46,7 +48,11 @@
               <Component id="manageAppointmentBtn" min="-2" pref="35" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="manageVisitsBtn" min="-2" pref="35" max="-2" attributes="0"/>
-              <EmptySpace pref="154" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="adminstratorBtn" min="-2" pref="35" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="generateReportBtn" min="-2" pref="35" max="-2" attributes="0"/>
+              <EmptySpace pref="72" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -78,6 +84,16 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="manageVisitsBtnActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="adminstratorBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Adminstrator functions"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="generateReportBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Report generation"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
