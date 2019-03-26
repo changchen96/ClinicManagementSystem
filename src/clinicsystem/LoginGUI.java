@@ -112,8 +112,10 @@ public class LoginGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         String username = jTextField1.getText();
         String password = String.valueOf(jPasswordField1.getPassword());
-        databaseConn.login(username, password);
-        dispose();
+        if (databaseConn.login(username, password) == true)
+        {
+            dispose();   
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed

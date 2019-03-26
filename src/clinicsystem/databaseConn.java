@@ -48,9 +48,10 @@ public class databaseConn {
         return false;
     }
     
-     public static void login(String username, String password)
+     public static boolean login(String username, String password)
     {
         String loginQuery = "SELECT staffUsername, staffPassword, staffRole FROM staff WHERE staffUsername = ? AND staffPassword = ?";
+        boolean flag = true;
         try
         {
             statement = connection.prepareStatement(loginQuery);
@@ -62,15 +63,25 @@ public class databaseConn {
                  JOptionPane.showMessageDialog(null, "Login successful!");
                   MainMenuGUI mainmenu = new MainMenuGUI();
                   mainmenu.setVisible(true);
+                  flag = true;
             }
             else
             {
                 JOptionPane.showMessageDialog(null, "Login failed!");
+                flag = false;
             }
             }
         catch (SQLException e)
         {
             System.out.println(e);
+        }
+        if (flag == false)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
         }
     }
 }
