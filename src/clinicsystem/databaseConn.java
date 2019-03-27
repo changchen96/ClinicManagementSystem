@@ -159,4 +159,25 @@ public class databaseConn {
          }
      }
      
+     public static void updatePatients(String FirstName, String LastName, String Gender, String DOB, String Address, String TelNo)
+     {
+         String updatePatientQuery = "UPDATE patient SET patientFirstName = ?, patientLastName = ?, patientGender = ?, patientDOB = ?, patientAddress = ?, patientTelNo = ?";
+         try
+         {
+             statement =connection.prepareStatement(updatePatientQuery);
+             statement.setString(1,FirstName);
+             statement.setString(2, LastName);
+             statement.setString(3, Gender);
+             statement.setString(4, DOB);
+             statement.setString(5, Address);
+             statement.setString(6, TelNo);
+             statement.executeUpdate();
+             JOptionPane.showMessageDialog(null, "Record successsfully upated!");
+         }
+         catch (SQLException e)
+         {
+             System.out.println(e.getMessage());
+         }
+     }
+     
 }

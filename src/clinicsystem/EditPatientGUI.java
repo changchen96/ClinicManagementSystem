@@ -114,8 +114,18 @@ public class EditPatientGUI extends javax.swing.JFrame {
         textPatientTelNo.setEnabled(false);
 
         btnSaveChanges.setText("Save changes");
+        btnSaveChanges.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveChangesActionPerformed(evt);
+            }
+        });
 
         btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -215,6 +225,25 @@ public class EditPatientGUI extends javax.swing.JFrame {
         textPatientAddress.setEnabled(true);
         textPatientTelNo.setEnabled(true);
     }//GEN-LAST:event_searchPatientBtnActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        ManagePatientMenu managePatient = new ManagePatientMenu();
+        managePatient.setVisible(true);
+        managePatient.setRole(this.getRole());
+        dispose();
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnSaveChangesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveChangesActionPerformed
+        // TODO add your handling code here:
+        String firstname = textPatientFirstName.getText();
+        String lastname = textPatientLastName.getText();
+        String gender = patientGenderCombo.getSelectedItem().toString();
+        String DOB = textPatientDOB.getText();
+        String address = textPatientAddress.getText();
+        String telno = textPatientTelNo.getText();
+        databaseConn.updatePatients(firstname, lastname, gender, DOB, address, telno);
+    }//GEN-LAST:event_btnSaveChangesActionPerformed
 
     /**
      * @param args the command line arguments
