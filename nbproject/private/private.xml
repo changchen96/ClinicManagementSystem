@@ -4,9 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file://nstu-nas01.uwe.ac.uk/users1$/c7-ong/Personal/NetBeansProjects/ClinicSystem/src/clinicsystem/MainMenuGUI.java</file>
-            <file>file://nstu-nas01.uwe.ac.uk/users1$/c7-ong/Personal/NetBeansProjects/ClinicSystem/src/clinicsystem/ClinicSystem.java</file>
             <file>file://nstu-nas01.uwe.ac.uk/users1$/c7-ong/Personal/NetBeansProjects/ClinicSystem/src/clinicsystem/databaseConn.java</file>
-            <file>file://nstu-nas01.uwe.ac.uk/users1$/c7-ong/Personal/NetBeansProjects/ClinicSystem/src/clinicsystem/LoginGUI.java</file>
+            <file>file://nstu-nas01.uwe.ac.uk/users1$/c7-ong/Personal/NetBeansProjects/ClinicSystem/src/clinicsystem/ManagePatientMenu.java</file>
+            <file>file://nstu-nas01.uwe.ac.uk/users1$/c7-ong/Personal/NetBeansProjects/ClinicSystem/src/clinicsystem/AddPatientMenu.java</file>
         </group>
     </open-files>
 </project-private>

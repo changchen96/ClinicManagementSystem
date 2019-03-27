@@ -5,6 +5,8 @@
  */
 package clinicsystem;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author c7-ong
@@ -14,10 +16,31 @@ public class MainMenuGUI extends javax.swing.JFrame {
     /**
      * Creates new form MainMenuGUI
      */
+    String role;
     public MainMenuGUI() {
         initComponents();
+        System.out.println("Main menu");
     }
-
+    
+    public String getRole()
+    {
+        return role;
+    }
+    
+    public void setRole(String setRole)
+    {
+        this.role = setRole;
+        jLabel1.setText(role);
+    }
+    
+    public void checkCredentials()
+    {
+        if (jLabel1.getText().equals("Admin"))
+        {
+            System.out.println("Admin detected");
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,11 +55,19 @@ public class MainMenuGUI extends javax.swing.JFrame {
         manageVisitsBtn = new javax.swing.JButton();
         adminstratorBtn = new javax.swing.JButton();
         generateReportBtn = new javax.swing.JButton();
+        Logout = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(600, 400));
 
         managePatientBtn.setText("Manage patients");
+        managePatientBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                managePatientBtnActionPerformed(evt);
+            }
+        });
 
         manageAppointmentBtn.setText("Manage Appointments");
         manageAppointmentBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -56,6 +87,17 @@ public class MainMenuGUI extends javax.swing.JFrame {
 
         generateReportBtn.setText("Report generation");
 
+        Logout.setText("Logout");
+        Logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LogoutActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("jLabel1");
+
+        jLabel2.setText("Logged in as:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -69,6 +111,14 @@ public class MainMenuGUI extends javax.swing.JFrame {
                     .addComponent(adminstratorBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(generateReportBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(225, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Logout)
+                .addGap(40, 40, 40))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -83,7 +133,17 @@ public class MainMenuGUI extends javax.swing.JFrame {
                 .addComponent(adminstratorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(generateReportBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Logout)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addContainerGap(29, Short.MAX_VALUE))))
         );
 
         managePatientBtn.getAccessibleContext().setAccessibleName("managePatientBtn");
@@ -100,6 +160,26 @@ public class MainMenuGUI extends javax.swing.JFrame {
     private void manageVisitsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageVisitsBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_manageVisitsBtnActionPerformed
+
+    private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutActionPerformed
+        // TODO add your handling code here:
+        int dialogResult = JOptionPane.showConfirmDialog(null, "Do you want to log out?");
+        if (dialogResult == JOptionPane.YES_OPTION)
+        {
+            JOptionPane.showMessageDialog(null,"Logged out!");
+            LoginGUI loginpage = new LoginGUI();
+            loginpage.setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_LogoutActionPerformed
+
+    private void managePatientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managePatientBtnActionPerformed
+        // TODO add your handling code here:
+        ManagePatientMenu patientMenu = new ManagePatientMenu();
+        patientMenu.setVisible(true);
+        patientMenu.setRole(role);
+        setVisible(false);
+    }//GEN-LAST:event_managePatientBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -132,13 +212,17 @@ public class MainMenuGUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainMenuGUI().setVisible(true);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Logout;
     private javax.swing.JButton adminstratorBtn;
     private javax.swing.JButton generateReportBtn;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton manageAppointmentBtn;
     private javax.swing.JButton managePatientBtn;
     private javax.swing.JButton manageVisitsBtn;

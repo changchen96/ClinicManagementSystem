@@ -10,7 +10,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -23,6 +25,7 @@ public class databaseConn {
     private static Connection connection;
     private static PreparedStatement statement;
     private static ResultSet result;
+    private String role;
     public static boolean openConn() throws SQLException
     {
         try
@@ -62,6 +65,8 @@ public class databaseConn {
             {
                  JOptionPane.showMessageDialog(null, "Login successful!");
                   MainMenuGUI mainmenu = new MainMenuGUI();
+                  mainmenu.setRole(result.getString("staffRole"));
+                  mainmenu.checkCredentials();
                   mainmenu.setVisible(true);
                   flag = true;
             }
@@ -84,4 +89,74 @@ public class databaseConn {
             return true;
         }
     }
+     
+     public static void addNewPatient(String retrievedFirstName, 
+             String retrievedLastName, 
+             String retrievedGender, 
+             String retrievedDOB, 
+             String retrievedAddress, 
+             String retrievedTelNo)
+     {
+         String addPatientQuery = "INSERT INTO patient (patientFirstName, patientLastName, patientGender, patientDOB, patientAddress, patientTelNo) VALUES " + "(?,?,?,?,?,?)";
+         try
+         {
+             statement = connection.prepareStatement(addPatientQuery);
+             statement.setString(1, retrievedFirstName);
+             statement.setString(2, retrievedLastName);
+             statement.setString(3, retrievedGender);
+             statement.setString(4, retrievedDOB);
+             statement.setString(5, retrievedAddress);
+             statement.setString(6, retrievedTelNo);
+             statement.executeUpdate();
+             JOptionPane.showMessageDialog(null, "Record successsfully inserted!");
+         }
+         catch(SQLException e)
+         {
+             System.out.println(e.getMessage());
+         }
+     }
+     
+     public static void fillPatientID(JComboBox comboBox)
+     {
+         String patientComboBoxQuery = "SELECT idpatient FROM patient";
+         try
+         {
+             statement = connection.prepareStatement(patientComboBoxQuery);
+             result = statement.executeQuery();
+             while(result.next())
+             {
+                 comboBox.addItem(result.getString("idpatient"));
+             }
+         }
+         catch (SQLException e)
+         {
+             System.out.println(e.getMessage());
+         }
+     }
+     
+     public static void findPatientInfoForEdit(String patientID, JTextField id, JTextField firstname, JTextField lastname, JComboBox gender, JTextField dob, JTextField address, JTextField telno)
+     {
+         String patientEditQuery = "SELECT * FROM patient WHERE idpatient = ?";
+         try
+         {
+             statement = connection.prepareStatement(patientEditQuery);
+             statement.setString(1, patientID);
+             result = statement.executeQuery();
+             while(result.next())
+             {
+                 id.setText(result.getString("idpatient"));
+                 firstname.setText(result.getString("patientFirstName"));
+                 lastname.setText(result.getString("patientLastName"));
+                 gender.setSelectedItem(result.getString("patientGender"));
+                 dob.setText(result.getString("patientDOB"));
+                 address.setText(result.getString("patientAddress"));
+                 telno.setText(result.getString("patientTelNo"));
+             }
+         }
+         catch (SQLException e)
+         {
+             System.out.println(e.getMessage());
+         }
+     }
+     
 }
