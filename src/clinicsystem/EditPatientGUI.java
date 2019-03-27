@@ -242,7 +242,8 @@ public class EditPatientGUI extends javax.swing.JFrame {
         String DOB = textPatientDOB.getText();
         String address = textPatientAddress.getText();
         String telno = textPatientTelNo.getText();
-        databaseConn.updatePatients(firstname, lastname, gender, DOB, address, telno);
+        String id = textPatientID.getText();
+        databaseConn.updatePatients(firstname, lastname, gender, DOB, address, telno, id);
     }//GEN-LAST:event_btnSaveChangesActionPerformed
 
     /**
