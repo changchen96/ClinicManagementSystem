@@ -64,6 +64,11 @@ public class ManagePatientMenu extends javax.swing.JFrame {
         });
 
         deletePatient.setText("Delete patient");
+        deletePatient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletePatientActionPerformed(evt);
+            }
+        });
 
         back.setText("Back");
         back.addActionListener(new java.awt.event.ActionListener() {
@@ -130,6 +135,15 @@ public class ManagePatientMenu extends javax.swing.JFrame {
         editPatient.setRole(this.getRole());
         dispose();
     }//GEN-LAST:event_editPatientActionPerformed
+
+    private void deletePatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletePatientActionPerformed
+        // TODO add your handling code here:
+        DeletePatientGUI deletePatient = new DeletePatientGUI();
+        databaseConn.fillPatientID(deletePatient.getComboBox());
+        deletePatient.setVisible(true);
+        deletePatient.setRole(this.getRole());
+        dispose();
+    }//GEN-LAST:event_deletePatientActionPerformed
 
     /**
      * @param args the command line arguments

@@ -173,7 +173,23 @@ public class databaseConn {
              statement.setString(6, TelNo);
              statement.setString(7, PatientID);
              statement.executeUpdate();
-             JOptionPane.showMessageDialog(null, "Record successsfully upated!");
+             JOptionPane.showMessageDialog(null, "Record successsfully updated!");
+         }
+         catch (SQLException e)
+         {
+             System.out.println(e.getMessage());
+         }
+     }
+     
+     public static void deletePatients(String id)
+     {
+         String deleteQuery = "DELETE FROM patient WHERE idpatient = ?";
+         try
+         {
+             statement = connection.prepareStatement(deleteQuery);
+             statement.setString(1, id);
+             statement.executeUpdate();
+             JOptionPane.showMessageDialog(null, "Record successsfully deleted!");
          }
          catch (SQLException e)
          {

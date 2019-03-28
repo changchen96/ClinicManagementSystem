@@ -11,13 +11,13 @@ import javax.swing.JOptionPane;
  *
  * @author c7-ong
  */
-public class EditPatientGUI extends javax.swing.JFrame {
+public class DeletePatientGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form EditPatientGUI
      */
     public String role;
-    public EditPatientGUI() {
+    public DeletePatientGUI() {
         initComponents();
     }
 
@@ -74,7 +74,7 @@ public class EditPatientGUI extends javax.swing.JFrame {
         textPatientAddress = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         textPatientTelNo = new javax.swing.JTextField();
-        btnSaveChanges = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -115,11 +115,11 @@ public class EditPatientGUI extends javax.swing.JFrame {
 
         textPatientTelNo.setEnabled(false);
 
-        btnSaveChanges.setText("Save changes");
-        btnSaveChanges.setEnabled(false);
-        btnSaveChanges.addActionListener(new java.awt.event.ActionListener() {
+        btnDelete.setText("Delete patient");
+        btnDelete.setEnabled(false);
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveChangesActionPerformed(evt);
+                btnDeleteActionPerformed(evt);
             }
         });
 
@@ -145,8 +145,8 @@ public class EditPatientGUI extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
                             .addComponent(jLabel7)
-                            .addComponent(btnSaveChanges))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
+                            .addComponent(btnDelete))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
                         .addComponent(btnBack)
                         .addGap(35, 35, 35))
                     .addGroup(layout.createSequentialGroup()
@@ -206,7 +206,7 @@ public class EditPatientGUI extends javax.swing.JFrame {
                     .addComponent(textPatientTelNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSaveChanges)
+                    .addComponent(btnDelete)
                     .addComponent(btnBack))
                 .addContainerGap())
         );
@@ -218,22 +218,21 @@ public class EditPatientGUI extends javax.swing.JFrame {
     private void searchPatientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchPatientBtnActionPerformed
         // TODO add your handling code here:
         String id = patientCombo.getSelectedItem().toString();
-         if (id.isEmpty())
+        if (id.isEmpty())
         {
             JOptionPane.showMessageDialog(null, "Select a patient first!");
         }
         else
         {
-        databaseConn.findPatientInfoForEdit(id, textPatientID, textPatientFirstName, textPatientLastName, patientGenderCombo, textPatientDOB, textPatientAddress, textPatientTelNo);
+            databaseConn.findPatientInfoForEdit(id, textPatientID, textPatientFirstName, textPatientLastName, patientGenderCombo, textPatientDOB, textPatientAddress, textPatientTelNo);
         textPatientFirstName.setEnabled(true);
         textPatientLastName.setEnabled(true);
         patientGenderCombo.setEnabled(true);
         textPatientDOB.setEnabled(true);
         textPatientAddress.setEnabled(true);
         textPatientTelNo.setEnabled(true);
-        btnSaveChanges.setEnabled(true);
+        btnDelete.setEnabled(true);
         }
-       
     }//GEN-LAST:event_searchPatientBtnActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -244,17 +243,11 @@ public class EditPatientGUI extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void btnSaveChangesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveChangesActionPerformed
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        String firstname = textPatientFirstName.getText();
-        String lastname = textPatientLastName.getText();
-        String gender = patientGenderCombo.getSelectedItem().toString();
-        String DOB = textPatientDOB.getText();
-        String address = textPatientAddress.getText();
-        String telno = textPatientTelNo.getText();
         String id = textPatientID.getText();
-        databaseConn.updatePatients(firstname, lastname, gender, DOB, address, telno, id);
-    }//GEN-LAST:event_btnSaveChangesActionPerformed
+        databaseConn.deletePatients(id);
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -273,27 +266,28 @@ public class EditPatientGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditPatientGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeletePatientGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditPatientGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeletePatientGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditPatientGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeletePatientGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditPatientGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeletePatientGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditPatientGUI().setVisible(true);
+                new DeletePatientGUI().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnSaveChanges;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
