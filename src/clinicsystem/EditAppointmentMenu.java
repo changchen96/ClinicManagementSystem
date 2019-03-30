@@ -5,6 +5,8 @@
  */
 package clinicsystem;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author c7-ong
@@ -71,7 +73,7 @@ public class EditAppointmentMenu extends javax.swing.JFrame {
         appointmentDate = new javax.swing.JTextField();
         patientCombo = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        addAppointmentBtn = new javax.swing.JButton();
+        updateDetails = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
         doctorCombo = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -95,18 +97,22 @@ public class EditAppointmentMenu extends javax.swing.JFrame {
 
         jLabel4.setText("Patient ID:");
 
+        appointmentDate.setEnabled(false);
         appointmentDate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 appointmentDateActionPerformed(evt);
             }
         });
 
+        patientCombo.setEnabled(false);
+
         jLabel5.setText("Doctor ID:");
 
-        addAppointmentBtn.setText("Add appointment");
-        addAppointmentBtn.addActionListener(new java.awt.event.ActionListener() {
+        updateDetails.setEnabled(false);
+        updateDetails.setLabel("Update details");
+        updateDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addAppointmentBtnActionPerformed(evt);
+                updateDetailsActionPerformed(evt);
             }
         });
 
@@ -117,14 +123,18 @@ public class EditAppointmentMenu extends javax.swing.JFrame {
             }
         });
 
+        doctorCombo.setEnabled(false);
+
         appointmentDetails.setColumns(20);
         appointmentDetails.setLineWrap(true);
         appointmentDetails.setRows(5);
+        appointmentDetails.setEnabled(false);
         jScrollPane1.setViewportView(appointmentDetails);
 
         jLabel6.setText("Appointment status:");
 
-        statusCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Scheduled" }));
+        statusCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Scheduled", "Postponed", "Cancelled" }));
+        statusCombo.setEnabled(false);
 
         jLabel7.setText("Appointment ID:");
 
@@ -152,7 +162,7 @@ public class EditAppointmentMenu extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(addAppointmentBtn)
+                                .addComponent(updateDetails)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(6, 6, 6)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -221,7 +231,7 @@ public class EditAppointmentMenu extends javax.swing.JFrame {
                     .addComponent(doctorCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addAppointmentBtn)
+                    .addComponent(updateDetails)
                     .addComponent(backBtn))
                 .addGap(33, 33, 33))
         );
@@ -230,15 +240,21 @@ public class EditAppointmentMenu extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addAppointmentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAppointmentBtnActionPerformed
+    private void updateDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateDetailsActionPerformed
         // TODO add your handling code here:
-        
-        
-    }//GEN-LAST:event_addAppointmentBtnActionPerformed
+        String details = appointmentDetails.getText();
+        String date = appointmentDate.getText();
+        String status = statusCombo.getItemAt(statusCombo.getSelectedIndex());
+        String doctorID = doctorCombo.getItemAt(doctorCombo.getSelectedIndex());
+        String id = appointmentID.getText();
+        databaseConn.updateAppointmentDetails(details, date, status, doctorID, id);
+    }//GEN-LAST:event_updateDetailsActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
-        
+        ManageAppointmentsMenu appointments = new ManageAppointmentsMenu();
+        appointments.setVisible(true);
+        appointments.setRole(this.getRole());
         dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 
@@ -249,7 +265,19 @@ public class EditAppointmentMenu extends javax.swing.JFrame {
     private void selectAppointmentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectAppointmentBtnActionPerformed
         // TODO add your handling code here:
         String id = appointmentCombo.getSelectedItem().toString();
-        databaseConn.findAppointmentInfoForEdit(id, appointmentID, appointmentDetails, appointmentDate, statusCombo, patientCombo, doctorCombo);
+         if (id.isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Select a patient first!");
+        }
+         else
+         {
+             databaseConn.findAppointmentInfoForEdit(id, appointmentID, appointmentDetails, appointmentDate, statusCombo, patientCombo, doctorCombo);
+             appointmentDetails.setEnabled(true);
+             appointmentDate.setEnabled(true);
+             appointmentCombo.setEnabled(true);
+             doctorCombo.setEnabled(true);
+             updateDetails.setEnabled(true);
+         }
     }//GEN-LAST:event_selectAppointmentBtnActionPerformed
 
     /**
@@ -291,7 +319,6 @@ public class EditAppointmentMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addAppointmentBtn;
     private javax.swing.JComboBox<String> appointmentCombo;
     private javax.swing.JTextField appointmentDate;
     private javax.swing.JTextArea appointmentDetails;
@@ -310,5 +337,6 @@ public class EditAppointmentMenu extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> patientCombo;
     private javax.swing.JButton selectAppointmentBtn;
     private javax.swing.JComboBox<String> statusCombo;
+    private javax.swing.JButton updateDetails;
     // End of variables declaration//GEN-END:variables
 }

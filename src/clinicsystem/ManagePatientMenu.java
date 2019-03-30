@@ -129,7 +129,7 @@ public class ManagePatientMenu extends javax.swing.JFrame {
 
     private void editPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPatientActionPerformed
         // TODO add your handling code here:
-        EditPatientGUI editPatient = new EditPatientGUI();
+        EditPatientMenu editPatient = new EditPatientMenu();
         databaseConn.fillPatientID(editPatient.getComboBox());
         editPatient.setVisible(true);
         editPatient.setRole(this.getRole());
@@ -138,7 +138,7 @@ public class ManagePatientMenu extends javax.swing.JFrame {
 
     private void deletePatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletePatientActionPerformed
         // TODO add your handling code here:
-        DeletePatientGUI deletePatient = new DeletePatientGUI();
+        DeletePatientMenu deletePatient = new DeletePatientMenu();
         databaseConn.fillPatientID(deletePatient.getComboBox());
         deletePatient.setVisible(true);
         deletePatient.setRole(this.getRole());

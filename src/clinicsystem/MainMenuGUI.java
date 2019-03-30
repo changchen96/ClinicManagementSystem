@@ -84,6 +84,11 @@ public class MainMenuGUI extends javax.swing.JFrame {
         });
 
         adminstratorBtn.setText("Adminstrator functions");
+        adminstratorBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminstratorBtnActionPerformed(evt);
+            }
+        });
 
         generateReportBtn.setText("Report generation");
 
@@ -184,6 +189,14 @@ public class MainMenuGUI extends javax.swing.JFrame {
         patientMenu.setRole(role);
         dispose();
     }//GEN-LAST:event_managePatientBtnActionPerformed
+
+    private void adminstratorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminstratorBtnActionPerformed
+        // TODO add your handling code here:
+        ManageStaffMembersMenu manageStaff = new ManageStaffMembersMenu();
+        manageStaff.setRole(role);
+        manageStaff.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_adminstratorBtnActionPerformed
 
     /**
      * @param args the command line arguments

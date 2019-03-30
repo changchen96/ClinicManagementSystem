@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -282,4 +283,153 @@ public class databaseConn {
          }
      }
      
+     public static void updateAppointmentDetails(String details, String date, String status, String doctorID, String id)
+     {
+         String updateAppointmentsQuery = "UPDATE appointment SET appointmentDetails = ?, appointmentDate = ?, appointmentStatus = ?, staff_idStaff = ? WHERE idappointment = ?";
+         try
+         {
+             statement = connection.prepareStatement(updateAppointmentsQuery);
+             statement.setString(1, details);
+             statement.setString(2, date);
+             statement.setString(3, status);
+             statement.setString(4, doctorID);
+             statement.setString(5, id);
+             statement.executeUpdate();
+             JOptionPane.showMessageDialog(null, "Appointment details updated!");
+         }
+         catch(SQLException e)
+         {
+              System.out.println(e.getMessage());
+         }
+     }
+     
+     public static void deleteAppointment(String id)
+     {
+         String deleteQuery = "DELETE FROM appointment WHERE idappointment = ?";
+         try
+         {
+             statement = connection.prepareStatement(deleteQuery);
+             statement.setString(1, id);
+             statement.executeUpdate();
+             JOptionPane.showMessageDialog(null, "Record successsfully deleted!");
+         }
+         catch (SQLException e)
+         {
+             System.out.println(e.getMessage());
+         }
+     }
+     
+     public static void addStaff(String username, String password, String staffName, String staffRole, String staffAddress, String staffTelNo, String staffDOB)
+     {
+         String addStaffQuery = "INSERT INTO staff (staffUsername, staffPassword, staffName, staffRole, staffAddress, staffTelNo, staffDOB) VALUES " + "(?,?,?,?,?,?,?)";
+         try
+         {
+             statement = connection.prepareStatement(addStaffQuery);
+             statement.setString(1, username);
+             statement.setString(2, password);
+             statement.setString(3, staffName);
+             statement.setString(4, staffRole);
+             statement.setString(5, staffAddress);
+             statement.setString(6, staffTelNo);
+             statement.setString(7, staffDOB);
+             statement.executeUpdate();
+             JOptionPane.showMessageDialog(null, "Staff member added!");
+         }
+         catch(SQLException e)
+         {
+              System.out.println(e.getMessage());
+         }
+     }
+     
+     public static void fillStaffID(JComboBox staffComboBox)
+     {
+         String addStaffQuery = "SELECT idstaff FROM staff";
+         try
+         {
+             statement = connection.prepareStatement(addStaffQuery);
+             result = statement.executeQuery();
+              while(result.next())
+             {
+                 staffComboBox.addItem(result.getString("idstaff"));
+
+             }
+         }
+         catch(SQLException e)
+         {
+              System.out.println(e.getMessage());
+         }
+     }
+     
+     public static void findStaffDetailsForEdit(String staffid, 
+             JTextField id, 
+             JTextField username, 
+             JPasswordField password, 
+             JTextField staffName, 
+             JTextField staffRole, 
+             JTextField address, 
+             JTextField telno, 
+             JTextField dob)
+     {
+         String staffEditQuery = "SELECT * FROM staff WHERE idstaff = ?";
+         try
+         {
+             statement = connection.prepareStatement(staffEditQuery);
+             statement.setString(1, staffid);
+             result = statement.executeQuery();
+             while(result.next())
+             {
+                 id.setText(result.getString("idstaff"));
+                 username.setText(result.getString("staffUsername"));
+                 password.setText(result.getString("staffPassword"));
+                 staffName.setText(result.getString("staffName"));
+                 staffRole.setText(result.getString("staffRole"));
+                 address.setText(result.getString("staffAddress"));
+                 telno.setText(result.getString("staffTelNo"));
+                 dob.setText(result.getString("staffDOB"));
+             }
+         }
+         catch (SQLException e)
+         {
+             System.out.println(e.getMessage());
+         }
+     }
+     
+     public static void updateStaffDetails(String username, String password, String staffName, String staffRole, String staffAddress, String staffTelNo, String staffDOB, String staffid)
+     {
+         String updateAppointmentsQuery = "UPDATE staff SET staffUsername = ?, staffPassword = ?, staffName = ?, staffRole = ?, staffAddress = ?, staffTelNo = ?, staffDOB = ? WHERE idstaff = ?";
+         try
+         {
+             statement = connection.prepareStatement(updateAppointmentsQuery);
+             statement.setString(1, username);
+             statement.setString(2, password);
+             statement.setString(3, staffName);
+             statement.setString(4, staffRole);
+             statement.setString(5, staffAddress);
+             statement.setString(6, staffTelNo);
+             statement.setString(7, staffDOB);
+             statement.setString(8, staffid);
+             statement.executeUpdate();
+             JOptionPane.showMessageDialog(null, "Staff details updated!");
+         }
+         catch(SQLException e)
+         {
+              System.out.println(e.getMessage());
+         }
+     }
+     
+      public static void deleteStaff(String id)
+     {
+         String deleteQuery = "DELETE FROM staff WHERE idstaff = ?";
+         try
+         {
+             statement = connection.prepareStatement(deleteQuery);
+             statement.setString(1, id);
+             statement.executeUpdate();
+             JOptionPane.showMessageDialog(null, "Record successsfully deleted!");
+         }
+         catch (SQLException e)
+         {
+             System.out.println(e.getMessage());
+         }
+     }
 }

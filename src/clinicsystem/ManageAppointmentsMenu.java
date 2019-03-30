@@ -143,7 +143,11 @@ public class ManageAppointmentsMenu extends javax.swing.JFrame {
 
     private void deleteAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteAppointmentActionPerformed
         // TODO add your handling code here:
-        
+        DeleteAppointmentMenu deleteAppointment = new DeleteAppointmentMenu();
+        databaseConn.fillAppointmentID(deleteAppointment.getAppointmentComboBox());
+        deleteAppointment.setRole(this.getRole());
+        deleteAppointment.setVisible(true);
+        dispose();
     }//GEN-LAST:event_deleteAppointmentActionPerformed
 
     /**

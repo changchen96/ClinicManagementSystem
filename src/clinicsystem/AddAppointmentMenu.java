@@ -193,9 +193,9 @@ public class AddAppointmentMenu extends javax.swing.JFrame {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
-        ManagePatientMenu managePatient = new ManagePatientMenu();
-        managePatient.setVisible(true);
-        managePatient.setRole(this.getRole());
+        ManageAppointmentsMenu appointments = new ManageAppointmentsMenu();
+        appointments.setVisible(true);
+        appointments.setRole(this.getRole());
         dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 

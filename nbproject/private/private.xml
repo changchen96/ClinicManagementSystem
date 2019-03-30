@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file://nstu-nas01.uwe.ac.uk/users1$/c7-ong/Personal/NetBeansProjects/ClinicSystem/src/clinicsystem/EditAppointmentMenu.java</file>
             <file>file://nstu-nas01.uwe.ac.uk/users1$/c7-ong/Personal/NetBeansProjects/ClinicSystem/src/clinicsystem/databaseConn.java</file>
             <file>file://nstu-nas01.uwe.ac.uk/users1$/c7-ong/Personal/NetBeansProjects/ClinicSystem/src/clinicsystem/EditPatientGUI.java</file>
-            <file>file://nstu-nas01.uwe.ac.uk/users1$/c7-ong/Personal/NetBeansProjects/ClinicSystem/src/clinicsystem/DeletePatientGUI.java</file>
-            <file>file://nstu-nas01.uwe.ac.uk/users1$/c7-ong/Personal/NetBeansProjects/ClinicSystem/src/clinicsystem/ManagePatientMenu.java</file>
-            <file>file://nstu-nas01.uwe.ac.uk/users1$/c7-ong/Personal/NetBeansProjects/ClinicSystem/src/clinicsystem/AddPatientMenu.java</file>
+            <file>file://nstu-nas01.uwe.ac.uk/users1$/c7-ong/Personal/NetBeansProjects/ClinicSystem/src/clinicsystem/ManageAppointmentsMenu.java</file>
         </group>
     </open-files>
 </project-private>

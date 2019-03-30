@@ -11,13 +11,13 @@ import javax.swing.JOptionPane;
  *
  * @author c7-ong
  */
-public class EditPatientGUI extends javax.swing.JFrame {
+public class EditPatientMenu extends javax.swing.JFrame {
 
     /**
      * Creates new form EditPatientGUI
      */
     public String role;
-    public EditPatientGUI() {
+    public EditPatientMenu() {
         initComponents();
     }
 
@@ -246,14 +246,7 @@ public class EditPatientGUI extends javax.swing.JFrame {
 
     private void btnSaveChangesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveChangesActionPerformed
         // TODO add your handling code here:
-        String firstname = textPatientFirstName.getText();
-        String lastname = textPatientLastName.getText();
-        String gender = patientGenderCombo.getSelectedItem().toString();
-        String DOB = textPatientDOB.getText();
-        String address = textPatientAddress.getText();
-        String telno = textPatientTelNo.getText();
-        String id = textPatientID.getText();
-        databaseConn.updatePatients(firstname, lastname, gender, DOB, address, telno, id);
+
     }//GEN-LAST:event_btnSaveChangesActionPerformed
 
     /**
@@ -273,20 +266,21 @@ public class EditPatientGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditPatientGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditPatientMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditPatientGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditPatientMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditPatientGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditPatientMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditPatientGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditPatientMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditPatientGUI().setVisible(true);
+                new EditPatientMenu().setVisible(true);
             }
         });
     }

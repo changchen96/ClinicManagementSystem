@@ -33,7 +33,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="addAppointmentBtn" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="updateDetails" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
@@ -122,7 +122,7 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="addAppointmentBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="updateDetails" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="backBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
@@ -153,6 +153,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="appointmentDate">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="appointmentDateActionPerformed"/>
       </Events>
@@ -162,6 +165,7 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
         </Property>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -172,12 +176,13 @@
         <Property name="text" type="java.lang.String" value="Doctor ID:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="addAppointmentBtn">
+    <Component class="javax.swing.JButton" name="updateDetails">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Add appointment"/>
+        <Property name="enabled" type="boolean" value="false"/>
+        <Property name="label" type="java.lang.String" value="Update details"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addAppointmentBtnActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateDetailsActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="backBtn">
@@ -193,6 +198,7 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
         </Property>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -210,6 +216,7 @@
             <Property name="columns" type="int" value="20"/>
             <Property name="lineWrap" type="boolean" value="true"/>
             <Property name="rows" type="int" value="5"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -222,10 +229,13 @@
     <Component class="javax.swing.JComboBox" name="statusCombo">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="1">
+          <StringArray count="3">
             <StringItem index="0" value="Scheduled"/>
+            <StringItem index="1" value="Postponed"/>
+            <StringItem index="2" value="Cancelled"/>
           </StringArray>
         </Property>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
