@@ -120,8 +120,13 @@ public class ManageVisitsMenu extends javax.swing.JFrame {
 
     private void addVisitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addVisitActionPerformed
         // TODO add your handling code here:
-       
-        dispose();
+       AddVisitMenu addVisit = new AddVisitMenu();
+       addVisit.setRole(this.getRole());
+       databaseConn.fillDoctorID(addVisit.getDoctorComboBox());
+       databaseConn.fillAppointmentID(addVisit.getAppointmentComboBox());
+       databaseConn.fillPatientID(addVisit.getPatientComboBox());
+       addVisit.setVisible(true);
+       dispose();
     }//GEN-LAST:event_addVisitActionPerformed
 
     private void editVisitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editVisitActionPerformed

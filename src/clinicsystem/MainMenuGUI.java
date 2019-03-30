@@ -168,6 +168,10 @@ public class MainMenuGUI extends javax.swing.JFrame {
 
     private void manageVisitsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageVisitsBtnActionPerformed
         // TODO add your handling code here:
+        ManageVisitsMenu visits = new ManageVisitsMenu();
+        visits.setRole(role);
+        visits.setVisible(true);
+        dispose();
     }//GEN-LAST:event_manageVisitsBtnActionPerformed
 
     private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutActionPerformed

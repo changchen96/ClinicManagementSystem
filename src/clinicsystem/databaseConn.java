@@ -27,7 +27,6 @@ public class databaseConn {
     private static Connection connection;
     private static PreparedStatement statement;
     private static ResultSet result;
-    private String role;
     public static boolean openConn() throws SQLException
     {
         try
@@ -426,6 +425,83 @@ public class databaseConn {
              statement.setString(1, id);
              statement.executeUpdate();
              JOptionPane.showMessageDialog(null, "Record successsfully deleted!");
+         }
+         catch (SQLException e)
+         {
+             System.out.println(e.getMessage());
+         }
+     }
+      
+      public static void addVisit(String details, String date, String notes, String appointmentid, String patientid, String doctorid)
+      {
+          String addVisitQuery = "INSERT INTO visit (visitDetails, visitDate, visitNotes, appointment_idappointment, appointment_patient_idpatient, appointment_staff_idStaff) VALUES " + "(?,?,?,?,?,?)";
+          try
+          {
+              statement = connection.prepareStatement(addVisitQuery);
+              statement.setString(1, details);
+              statement.setString(2, date);
+              statement.setString(3, notes);
+              statement.setString(4, appointmentid);
+              statement.setString(5, patientid);
+              statement.setString(6, doctorid);
+              statement.executeUpdate();
+              JOptionPane.showMessageDialog(null, "New visit recorded!");
+          }
+          catch(SQLException e)
+          {
+              System.out.println(e.getMessage());
+          }
+      }
+      
+      public static void fillVisitDetails(JComboBox comboBox)
+      {
+         String appointmentComboBoxQuery = "SELECT idvisit FROM visit";
+         try
+         {
+             statement = connection.prepareStatement(appointmentComboBoxQuery);
+             result = statement.executeQuery();
+             while(result.next())
+             {
+                 comboBox.addItem(result.getString("idvisit"));
+             }
+         }
+         catch (SQLException e)
+         {
+             System.out.println(e.getMessage());
+         }
+      }
+      
+       public static void updateVisitDetails(String details, String date, String notes, String appointmentID, String patientID, String doctorID, String id)
+     {
+         String updateAppointmentsQuery = "UPDATE visit SET visitDetails = ?, visitDate = ?, visitNotes = ?, appointment_idappointment = ?, appointment_patient_idpatient = ?, appointment_staff_idStaff = ? WHERE idvisit = ?";
+         try
+         {
+             statement = connection.prepareStatement(updateAppointmentsQuery);
+             statement.setString(1, details);
+             statement.setString(2, date);
+             statement.setString(3, notes);
+             statement.setString(4, appointmentID);
+             statement.setString(5, patientID);
+             statement.setString(6, doctorID);
+             statement.setString(7, id);
+             statement.executeUpdate();
+             JOptionPane.showMessageDialog(null, "Visit details updated!");
+         }
+         catch(SQLException e)
+         {
+              System.out.println(e.getMessage());
+         }
+     }
+       
+       public static void deleteVisit(String id)
+     {
+         String deleteQuery = "DELETE FROM visit WHERE idvisit = ?";
+         try
+         {
+             statement = connection.prepareStatement(deleteQuery);
+             statement.setString(1, id);
+             statement.executeUpdate();
+             JOptionPane.showMessageDialog(null, "Visit successsfully deleted!");
          }
          catch (SQLException e)
          {
