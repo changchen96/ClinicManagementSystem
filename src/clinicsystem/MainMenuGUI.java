@@ -69,14 +69,14 @@ public class MainMenuGUI extends javax.swing.JFrame {
             }
         });
 
-        manageAppointmentBtn.setText("Manage Appointments");
+        manageAppointmentBtn.setText("Manage appointments");
         manageAppointmentBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manageAppointmentBtnActionPerformed(evt);
             }
         });
 
-        manageVisitsBtn.setText("Manage Visits");
+        manageVisitsBtn.setText("Manage visits");
         manageVisitsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manageVisitsBtnActionPerformed(evt);
@@ -155,6 +155,10 @@ public class MainMenuGUI extends javax.swing.JFrame {
 
     private void manageAppointmentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageAppointmentBtnActionPerformed
         // TODO add your handling code here:
+        ManageAppointmentsMenu appointments = new ManageAppointmentsMenu();
+        appointments.setVisible(true);
+        appointments.setRole(role);
+        dispose();
     }//GEN-LAST:event_manageAppointmentBtnActionPerformed
 
     private void manageVisitsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageVisitsBtnActionPerformed
@@ -178,7 +182,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
         ManagePatientMenu patientMenu = new ManagePatientMenu();
         patientMenu.setVisible(true);
         patientMenu.setRole(role);
-        setVisible(false);
+        dispose();
     }//GEN-LAST:event_managePatientBtnActionPerformed
 
     /**

@@ -94,7 +94,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="manageAppointmentBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Manage Appointments"/>
+        <Property name="text" type="java.lang.String" value="Manage appointments"/>
       </Properties>
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="manageAppointmentBtn"/>
@@ -105,7 +105,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="manageVisitsBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Manage Visits"/>
+        <Property name="text" type="java.lang.String" value="Manage visits"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="manageVisitsBtnActionPerformed"/>

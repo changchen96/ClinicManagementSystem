@@ -3,9 +3,6 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[600, 400]"/>
-    </Property>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
@@ -28,13 +25,13 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="128" max="32767" attributes="0"/>
+              <EmptySpace pref="115" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="editPatient" max="32767" attributes="0"/>
-                  <Component id="addPatient" pref="141" max="32767" attributes="0"/>
-                  <Component id="deletePatient" alignment="0" pref="141" max="32767" attributes="0"/>
+                  <Component id="editAppointment" max="32767" attributes="0"/>
+                  <Component id="addAppointment" max="32767" attributes="0"/>
+                  <Component id="deleteAppointment" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="131" max="32767" attributes="0"/>
+              <EmptySpace pref="118" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
@@ -47,11 +44,11 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace pref="57" max="32767" attributes="0"/>
-              <Component id="addPatient" min="-2" pref="35" max="-2" attributes="0"/>
+              <Component id="addAppointment" min="-2" pref="35" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="editPatient" min="-2" pref="35" max="-2" attributes="0"/>
+              <Component id="editAppointment" min="-2" pref="35" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="deletePatient" min="-2" pref="35" max="-2" attributes="0"/>
+              <Component id="deleteAppointment" min="-2" pref="35" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
               <Component id="back" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
@@ -60,28 +57,28 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="addPatient">
+    <Component class="javax.swing.JButton" name="addAppointment">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Add patient"/>
+        <Property name="text" type="java.lang.String" value="Add appointment"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addPatientActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addAppointmentActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="editPatient">
+    <Component class="javax.swing.JButton" name="editAppointment">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Edit patient"/>
+        <Property name="text" type="java.lang.String" value="Edit existing appointment"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editPatientActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editAppointmentActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="deletePatient">
+    <Component class="javax.swing.JButton" name="deleteAppointment">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Delete patient"/>
+        <Property name="text" type="java.lang.String" value="Delete existing appointment"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deletePatientActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteAppointmentActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="back">

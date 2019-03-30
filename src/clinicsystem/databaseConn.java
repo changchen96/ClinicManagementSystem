@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
@@ -134,6 +135,42 @@ public class databaseConn {
          }
      }
      
+      public static void fillDoctorID(JComboBox comboBox)
+     {
+         String doctorComboBoxQuery = "SELECT idstaff FROM staff WHERE staffRole = 'Doctor'";
+         try
+         {
+             statement = connection.prepareStatement(doctorComboBoxQuery);
+             result = statement.executeQuery();
+             while(result.next())
+             {
+                 comboBox.addItem(result.getString("idstaff"));
+             }
+         }
+         catch (SQLException e)
+         {
+             System.out.println(e.getMessage());
+         }
+     }
+      
+      public static void fillAppointmentID(JComboBox comboBox)
+     {
+         String appointmentComboBoxQuery = "SELECT idappointment FROM appointment";
+         try
+         {
+             statement = connection.prepareStatement(appointmentComboBoxQuery);
+             result = statement.executeQuery();
+             while(result.next())
+             {
+                 comboBox.addItem(result.getString("idappointment"));
+             }
+         }
+         catch (SQLException e)
+         {
+             System.out.println(e.getMessage());
+         }
+     }
+     
      public static void findPatientInfoForEdit(String patientID, JTextField id, JTextField firstname, JTextField lastname, JComboBox gender, JTextField dob, JTextField address, JTextField telno)
      {
          String patientEditQuery = "SELECT * FROM patient WHERE idpatient = ?";
@@ -190,6 +227,54 @@ public class databaseConn {
              statement.setString(1, id);
              statement.executeUpdate();
              JOptionPane.showMessageDialog(null, "Record successsfully deleted!");
+         }
+         catch (SQLException e)
+         {
+             System.out.println(e.getMessage());
+         }
+     }
+     
+     public static void addNewAppointment(String retrievedDetails, 
+             String retrievedDate,
+             String retrievedStatus,
+             String retrievedPatientID, 
+             String retrievedStaffID)
+     {
+         String addAppointmentQuery = "INSERT INTO appointment (appointmentDetails, appointmentDate, appointmentStatus, patient_idpatient, staff_idstaff) VALUES " + "(?,?,?,?,?)";
+         try
+         {
+             statement = connection.prepareStatement(addAppointmentQuery);
+             statement.setString(1, retrievedDetails);
+             statement.setString(2, retrievedDate);
+             statement.setString(3, retrievedStatus);
+             statement.setString(4, retrievedPatientID);
+             statement.setString(5, retrievedStaffID);
+             statement.executeUpdate();
+             JOptionPane.showMessageDialog(null, "Appointment successsfully inserted!");
+         }
+         catch(SQLException e)
+         {
+             System.out.println(e.getMessage());
+         }
+     }
+     
+     public static void findAppointmentInfoForEdit(String appointmentid, JTextField id, JTextArea details, JTextField date, JComboBox status, JComboBox patientid, JComboBox doctorid)
+     {
+         String patientEditQuery = "SELECT * FROM appointment WHERE idappointment = ?";
+         try
+         {
+             statement = connection.prepareStatement(patientEditQuery);
+             statement.setString(1, appointmentid);
+             result = statement.executeQuery();
+             while(result.next())
+             {
+                 id.setText(result.getString("idappointment"));
+                 details.setText(result.getString("appointmentDetails"));
+                 date.setText(result.getString("appointmentDate"));
+                 status.setSelectedItem(result.getString("appointmentStatus"));
+                 patientid.setSelectedItem(result.getString("patient_idpatient"));
+                 doctorid.setSelectedItem(result.getString("staff_idstaff"));
+             }
          }
          catch (SQLException e)
          {
