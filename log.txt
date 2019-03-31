@@ -1,0 +1,17 @@
+f65ffa9 (HEAD -> master, origin/master) Edited the button sizes in the main menu
+aefe58f Now doing add transactions
+4a0a360 Edit and delete visit done
+f8d01dc Add new visit done, edit and delete visit left
+32823ea Now doing visit management
+8aa64a0 Manage appointment and manage staff functions done
+579c585 Add appointment done, now on edit and delete appointment
+912cb13 Delete patient done
+7277ff2 Fixed an error in Edit patients
+eb50683 Edit patient done, now onto Delete patient
+39e7028 Add patient function done, now onto Edit patient and Delete patient
+094291b Made minor changes to the login function
+b3a055d Login function done
+1bb1fc3 Updates to the main Java class and added new button to main menu
+03b08b7 Pushed remaining files
+3a5e154 First commit + push
+d8e74fc First commit + push
