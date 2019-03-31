@@ -471,6 +471,24 @@ public class databaseConn {
          }
       }
       
+      public static void fillTransactionDetails(JComboBox comboBox)
+      {
+           String transactionComboBoxQuery = "SELECT idtransaction FROM transaction";
+         try
+         {
+             statement = connection.prepareStatement(transactionComboBoxQuery);
+             result = statement.executeQuery();
+             while(result.next())
+             {
+                 comboBox.addItem(result.getString("idtransaction"));
+             }
+         }
+         catch (SQLException e)
+         {
+             System.out.println(e.getMessage());
+         }
+      }
+      
       public static void findVisitDetailsForEdit(String id, JTextField visitId, JTextArea details, JTextField date, JTextArea notes, JComboBox appointment, JComboBox patient, JComboBox doctor)
       {
           String selectVisitQuery = "SELECT * FROM visit WHERE idvisit = ?";
@@ -533,4 +551,26 @@ public class databaseConn {
              System.out.println(e.getMessage());
          }
      }
+       
+       public static void addNewTransaction(String details, double amountPaid, String method, double amount, double balance, String staffid, String patientid)
+       {
+           String insertTransactionQuery = "INSERT INTO transaction (transactionDetails, transactionAmountPaid, transactionMethod, transactionAmount, transactionBalance, staff_idstaff, patient_idpatient) VALUES" + "(?,?,?,?,?,?,?)";
+           try
+           {
+               statement = connection.prepareStatement(insertTransactionQuery);
+               statement.setString(1, details);
+               statement.setDouble(2, amountPaid);
+               statement.setString(3, method);
+               statement.setDouble(4, amount);
+               statement.setDouble(5, balance);
+               statement.setString(6, staffid);
+               statement.setString(7, patientid);
+               statement.executeUpdate();
+               JOptionPane.showMessageDialog(null, "New transaction added!");
+           }
+           catch (SQLException e)
+           {
+               System.out.println(e.getMessage());
+           }
+       }
 }
