@@ -19,7 +19,7 @@ public class EditAppointmentMenu extends javax.swing.JFrame {
     String role;
     public EditAppointmentMenu() {
         initComponents();
-        System.out.println("Add patient menu");
+        System.out.println("Edit appointments menu");
     }
     
     public void setRole(String setRole)
@@ -252,9 +252,9 @@ public class EditAppointmentMenu extends javax.swing.JFrame {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
-        ManageAppointmentsMenu appointments = new ManageAppointmentsMenu();
-        appointments.setVisible(true);
-        appointments.setRole(this.getRole());
+        ManageVisitsMenu visits = new ManageVisitsMenu();
+        visits.setVisible(true);
+        visits.setRole(this.getRole());
         dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 

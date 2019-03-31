@@ -471,6 +471,31 @@ public class databaseConn {
          }
       }
       
+      public static void findVisitDetailsForEdit(String id, JTextField visitId, JTextArea details, JTextField date, JTextArea notes, JComboBox appointment, JComboBox patient, JComboBox doctor)
+      {
+          String selectVisitQuery = "SELECT * FROM visit WHERE idvisit = ?";
+          try
+          {
+              statement = connection.prepareStatement(selectVisitQuery);
+              statement.setString(1, id);
+              result = statement.executeQuery();
+              while (result.next())
+              {
+                  visitId.setText(result.getString("idvisit"));
+                  details.setText(result.getString("visitDetails"));
+                  date.setText(result.getString("visitDate"));
+                  notes.setText(result.getString("visitNotes"));
+                  appointment.setSelectedItem(result.getString("appointment_idappointment"));
+                  patient.setSelectedItem(result.getString("appointment_patient_idpatient"));
+                  doctor.setSelectedItem(result.getString("appointment_staff_idstaff"));
+              }
+          }
+          catch(SQLException e)
+          {
+              System.out.println(e.getMessage());
+          }
+      }
+      
        public static void updateVisitDetails(String details, String date, String notes, String appointmentID, String patientID, String doctorID, String id)
      {
          String updateAppointmentsQuery = "UPDATE visit SET visitDetails = ?, visitDate = ?, visitNotes = ?, appointment_idappointment = ?, appointment_patient_idpatient = ?, appointment_staff_idStaff = ? WHERE idvisit = ?";

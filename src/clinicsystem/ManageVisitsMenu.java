@@ -17,7 +17,7 @@ public class ManageVisitsMenu extends javax.swing.JFrame {
     public String role;
     public ManageVisitsMenu() {
         initComponents();
-        System.out.println("Manage patient menu");
+        System.out.println("Manage visit menu");
     }
     
     public void setRole(String setRole)
@@ -131,14 +131,26 @@ public class ManageVisitsMenu extends javax.swing.JFrame {
 
     private void editVisitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editVisitActionPerformed
         // TODO add your handling code here:
-        
+        EditVisitMenu editVisit = new EditVisitMenu();
+        editVisit.setRole(this.getRole());
+        databaseConn.fillVisitDetails(editVisit.getVisitComboBox());
+        databaseConn.fillAppointmentID(editVisit.getAppointmentComboBox());
+        databaseConn.fillDoctorID(editVisit.getDoctorComboBox());
+        databaseConn.fillPatientID(editVisit.getPatientComboBox());
+        editVisit.setVisible(true);
         dispose();
     }//GEN-LAST:event_editVisitActionPerformed
 
     private void deleteVisitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteVisitActionPerformed
         // TODO add your handling code here:
-       
-        dispose();
+       DeleteVisitMenu deleteVisit = new DeleteVisitMenu();
+       deleteVisit.setRole(this.getRole());
+       databaseConn.fillVisitDetails(deleteVisit.getVisitComboBox());
+       databaseConn.fillAppointmentID(deleteVisit.getAppointmentComboBox());
+       databaseConn.fillPatientID(deleteVisit.getPatientComboBox());
+       databaseConn.fillDoctorID(deleteVisit.getDoctorComboBox());
+       deleteVisit.setVisible(true);
+       dispose();
     }//GEN-LAST:event_deleteVisitActionPerformed
 
     /**
