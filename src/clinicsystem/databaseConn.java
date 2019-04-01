@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
@@ -127,6 +128,24 @@ public class databaseConn {
              while(result.next())
              {
                  comboBox.addItem(result.getString("idpatient"));
+             }
+         }
+         catch (SQLException e)
+         {
+             System.out.println(e.getMessage());
+         }
+     }
+     
+     public static void fillVisitID(JComboBox comboBox)
+     {
+         String visitComboBoxQuery = "SELECT idvisit FROM visit";
+         try
+         {
+             statement = connection.prepareStatement(visitComboBoxQuery);
+             result = statement.executeQuery();
+             while (result.next())
+             {
+                 comboBox.addItem(result.getString("idvisit"));
              }
          }
          catch (SQLException e)
@@ -573,4 +592,43 @@ public class databaseConn {
                System.out.println(e.getMessage());
            }
        }
+       
+       public static void findTransactionInfoForEdit(String visitid, 
+               JTextField visitidtext,
+               JTextArea transactionDetails, 
+               JTextField amountpaid, 
+               JTextField transactionmethod, 
+               JTextField transactionamount, 
+               JLabel balance, 
+               JComboBox staffID, 
+               JComboBox patientID)
+       {
+           String findTransactionQuery = "SELECT * FROM transaction WHERE idtransaction = ?";
+           try
+           {
+               statement = connection.prepareStatement(findTransactionQuery);
+               statement.setString(1, visitid);
+               result = statement.executeQuery();
+               while (result.next())
+               {
+                   visitidtext.setText(result.getString("idvisit"));
+                   transactionDetails.setText(result.getString("transactionDetails"));
+                   amountpaid.setText(result.getString("transactionAmountPaid"));
+                   transactionmethod.setText(result.getString("transactionMethod"));
+                   transactionamount.setText(result.getString("transactionAmount"));
+                   balance.setText(result.getString("transactionBalance"));
+                   staffID.setSelectedItem(result.getString("staff_idstaff"));
+                   patientID.setSelectedItem(result.getString("patient_idpatient"));
+               }
+           }
+           catch (SQLException e)
+           {
+               System.out.println(e.getMessage());
+           }
+       }
+
+    public static void updateTransactionDetails()
+    {
+        
+    }
 }

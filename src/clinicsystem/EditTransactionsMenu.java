@@ -5,6 +5,8 @@
  */
 package clinicsystem;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author c7-ong
@@ -68,8 +70,10 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
         addTransactionBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton2 = new javax.swing.JButton();
+        visitIDCombo = new javax.swing.JComboBox<>();
+        selectTransaction = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        visitIDText = new javax.swing.JTextField();
 
         jButton1.setText("jButton1");
 
@@ -97,7 +101,7 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
 
         jLabel9.setText("Edit transaction");
 
-        addTransactionBtn.setText("Add new transaction");
+        addTransactionBtn.setText("Update transaction details");
         addTransactionBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addTransactionBtnActionPerformed(evt);
@@ -113,7 +117,14 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
 
         jLabel6.setText("Select visit:");
 
-        jButton2.setText("Select visit");
+        selectTransaction.setText("Select transaction");
+        selectTransaction.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectTransactionActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setText("Visit ID:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -124,7 +135,7 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(addTransactionBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
                         .addComponent(backBtn))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -136,7 +147,8 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1)
-                            .addComponent(jLabel6))
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel10))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -148,10 +160,10 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
                                 .addComponent(amntPaid, javax.swing.GroupLayout.Alignment.LEADING))
                             .addComponent(balanceLabel)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(visitIDCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2)))
-                        .addGap(0, 76, Short.MAX_VALUE)))
+                                .addComponent(selectTransaction))
+                            .addComponent(visitIDText, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -162,13 +174,17 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
-                .addGap(5, 5, 5)
+                    .addComponent(visitIDCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(selectTransaction))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(visitIDText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGap(2, 2, 2)
+                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(amntPaid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -192,11 +208,11 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(patientCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addTransactionBtn)
                     .addComponent(backBtn))
-                .addContainerGap())
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         pack();
@@ -222,8 +238,21 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
         balanceLabel.setText(balance.toString());
         String staffid = staffCombo.getItemAt(staffCombo.getSelectedIndex());
         String patientid = patientCombo.getItemAt(patientCombo.getSelectedIndex());
-        databaseConn.addNewTransaction(details, amountpaid, method, amount, balance, staffid, patientid);
+        databaseConn.updateTransactionDetails(details, amountpaid, method, amount, balance, staffid, patientid);
     }//GEN-LAST:event_addTransactionBtnActionPerformed
+
+    private void selectTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectTransactionActionPerformed
+        // TODO add your handling code here:
+        String visitid = visitIDCombo.getSelectedItem().toString();
+         if (visitid.isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Select a visit first!");
+        }
+         else
+         {
+            databaseConn.findTransactionInfoForEdit(visitid, visitIDText, transactionDetails, amntPaid, transactionMethod, transactionAmnt, balanceLabel, staffCombo, patientCombo);
+         }
+    }//GEN-LAST:event_selectTransactionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -267,9 +296,8 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
     private javax.swing.JButton backBtn;
     private javax.swing.JLabel balanceLabel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -280,9 +308,12 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> patientCombo;
+    private javax.swing.JButton selectTransaction;
     private javax.swing.JComboBox<String> staffCombo;
     private javax.swing.JTextField transactionAmnt;
     private javax.swing.JTextArea transactionDetails;
     private javax.swing.JTextField transactionMethod;
+    private javax.swing.JComboBox<String> visitIDCombo;
+    private javax.swing.JTextField visitIDText;
     // End of variables declaration//GEN-END:variables
 }
