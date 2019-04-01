@@ -5,6 +5,8 @@
  */
 package clinicsystem;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author c7-ong
@@ -179,13 +181,22 @@ public class AddPatientMenu extends javax.swing.JFrame {
 
     private void addPatientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPatientBtnActionPerformed
         // TODO add your handling code here:
+        if (firstNameText.getText().isEmpty() || lastNameText.getText().isEmpty() || genderCombo.getSelectedIndex() == -1 || DOBText.getText().isEmpty() || addressText.getText().isEmpty()||telNoText.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "One or more empty fields detected! Please fill in the empty fields!");
+        }
+        else
+        {
         String retrievedFirstName = firstNameText.getText();
         String retrievedLastName = lastNameText.getText();
         String retrievedGender = genderCombo.getItemAt(genderCombo.getSelectedIndex());
         String retrievedDOB = DOBText.getText();
         String retrievedAddress = addressText.getText();
         String retrievedTelNo = telNoText.getText();
+        JOptionPane.showMessageDialog(null, "All fields are filled!");
         databaseConn.addNewPatient(retrievedFirstName, retrievedLastName, retrievedGender, retrievedDOB, retrievedAddress, retrievedTelNo);
+        }
+        
     }//GEN-LAST:event_addPatientBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed

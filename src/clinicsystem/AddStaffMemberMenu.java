@@ -194,9 +194,9 @@ public class AddStaffMemberMenu extends javax.swing.JFrame {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
-        ManagePatientMenu managePatient = new ManagePatientMenu();
-        managePatient.setVisible(true);
-        managePatient.setRole(this.getRole());
+        ManageStaffMembersMenu manageStaff = new ManageStaffMembersMenu();
+        manageStaff.setVisible(true);
+        manageStaff.setRole(this.getRole());
         dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 

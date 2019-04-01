@@ -11,13 +11,13 @@ import javax.swing.JOptionPane;
  *
  * @author c7-ong
  */
-public class EditTransactionsMenu extends javax.swing.JFrame {
+public class DeleteTransactionsMenu extends javax.swing.JFrame {
 
     /**
      * Creates new form AddTransactionsMenu
      */
     String role;
-    public EditTransactionsMenu() {
+    public DeleteTransactionsMenu() {
         initComponents();
     }
     
@@ -72,7 +72,7 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         patientCombo = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
-        updateTransactionBtn = new javax.swing.JButton();
+        deleteTransactionBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         transactionCombo = new javax.swing.JComboBox<>();
@@ -88,13 +88,20 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
 
         transactionDetails.setColumns(20);
         transactionDetails.setRows(5);
+        transactionDetails.setEnabled(false);
         jScrollPane1.setViewportView(transactionDetails);
 
         jLabel2.setText("Amount paid:");
 
+        amntPaid.setEnabled(false);
+
         jLabel3.setText("Transaction method:");
 
+        transactionMethod.setEnabled(false);
+
         jLabel4.setText("Transaction amount:");
+
+        transactionAmnt.setEnabled(false);
 
         jLabel5.setText("Balance:");
 
@@ -102,14 +109,18 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
 
         jLabel7.setText("Staff ID:");
 
+        staffCombo.setEnabled(false);
+
         jLabel8.setText("Patient ID:");
+
+        patientCombo.setEnabled(false);
 
         jLabel9.setText("Edit transaction");
 
-        updateTransactionBtn.setText("Update transaction details");
-        updateTransactionBtn.addActionListener(new java.awt.event.ActionListener() {
+        deleteTransactionBtn.setText("Update transaction details");
+        deleteTransactionBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateTransactionBtnActionPerformed(evt);
+                deleteTransactionBtnActionPerformed(evt);
             }
         });
 
@@ -131,6 +142,8 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
 
         jLabel10.setText("Transaction ID:");
 
+        visitIDText.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -139,7 +152,7 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(updateTransactionBtn)
+                        .addComponent(deleteTransactionBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
                         .addComponent(backBtn))
                     .addGroup(layout.createSequentialGroup()
@@ -215,7 +228,7 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
                     .addComponent(patientCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(updateTransactionBtn)
+                    .addComponent(deleteTransactionBtn)
                     .addComponent(backBtn))
                 .addGap(0, 11, Short.MAX_VALUE))
         );
@@ -232,19 +245,11 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 
-    private void updateTransactionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateTransactionBtnActionPerformed
+    private void deleteTransactionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteTransactionBtnActionPerformed
         // TODO add your handling code here:
         String visitid = visitIDText.getText();
-        String details = transactionDetails.getText();
-        Double amountpaid = Double.parseDouble(amntPaid.getText());
-        String method = transactionMethod.getText();
-        Double amount = Double.parseDouble(transactionAmnt.getText());
-        Double balance = amountpaid - amount;
-        balanceLabel.setText(balance.toString());
-        String staffid = staffCombo.getItemAt(staffCombo.getSelectedIndex());
-        String patientid = patientCombo.getItemAt(patientCombo.getSelectedIndex());
-        databaseConn.updateTransactionDetails(details, amountpaid, method, amount, balance, staffid, patientid, visitid);
-    }//GEN-LAST:event_updateTransactionBtnActionPerformed
+        databaseConn.deleteTransactionDetails(visitid);
+    }//GEN-LAST:event_deleteTransactionBtnActionPerformed
 
     private void selectTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectTransactionActionPerformed
         // TODO add your handling code here:
@@ -276,21 +281,23 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditTransactionsMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeleteTransactionsMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditTransactionsMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeleteTransactionsMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditTransactionsMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeleteTransactionsMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditTransactionsMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeleteTransactionsMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditTransactionsMenu().setVisible(true);
+                new DeleteTransactionsMenu().setVisible(true);
             }
         });
     }
@@ -299,6 +306,7 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
     private javax.swing.JTextField amntPaid;
     private javax.swing.JButton backBtn;
     private javax.swing.JLabel balanceLabel;
+    private javax.swing.JButton deleteTransactionBtn;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -318,7 +326,6 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> transactionCombo;
     private javax.swing.JTextArea transactionDetails;
     private javax.swing.JTextField transactionMethod;
-    private javax.swing.JButton updateTransactionBtn;
     private javax.swing.JTextField visitIDText;
     // End of variables declaration//GEN-END:variables
 }

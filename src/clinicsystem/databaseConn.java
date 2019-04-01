@@ -491,6 +491,24 @@ public class databaseConn {
          }
       }
       
+      public static void fillStockManagerDetails(JComboBox comboBox)
+      {
+          String stockManagerQuery = "SELECT idstaff FROM staff WHERE role = 'Stock Manager'";
+          try
+          {
+              statement = connection.prepareStatement(stockManagerQuery);
+              result = statement.executeQuery();
+              while(result.next())
+             {
+                 comboBox.addItem(result.getString("idstaff"));
+             }
+          }
+          catch (SQLException e)
+          {
+              System.out.println(e.getMessage());
+          }
+      }
+      
       public static void findVisitDetailsForEdit(String id, JTextField visitId, JTextArea details, JTextField date, JTextArea notes, JComboBox appointment, JComboBox patient, JComboBox doctor)
       {
           String selectVisitQuery = "SELECT * FROM visit WHERE idvisit = ?";
@@ -634,6 +652,41 @@ public class databaseConn {
             statement.setString(8, id);
             statement.executeUpdate();
             JOptionPane.showMessageDialog(null, "Transaction details updated!");
+        }
+        catch (SQLException e)
+        {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public static void deleteTransactionDetails(String transactionid)
+    {
+        String deleteTransactionQuery = "DELETE FROM transaction WHERE idtransaction = ?";
+        try
+        {
+            statement = connection.prepareStatement(deleteTransactionQuery);
+            statement.setString(1, transactionid);
+            statement.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Transaction details deleted!");
+        }
+        catch (SQLException e)
+        {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public static void addStock(String name, String details, String status, String managerID)
+    {
+        String addStockQuery = "INSERT INTO stock (productName, productDesc, productStatus, staff_idstaff) VALUES" + "(?,?,?,?)";
+        try
+        {
+            statement = connection.prepareStatement(addStockQuery);
+            statement.setString(1, name);
+            statement.setString(2, details);
+            statement.setString(3, status);
+            statement.setString(4, managerID);
+            statement.executeUpdate();
+            JOptionPane.showMessageDialog(null, "New item added!");
         }
         catch (SQLException e)
         {

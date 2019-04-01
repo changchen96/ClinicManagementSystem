@@ -9,13 +9,13 @@ package clinicsystem;
  *
  * @author c7-ong
  */
-public class ManageTransactionsMenu extends javax.swing.JFrame {
+public class ManageStockMenu extends javax.swing.JFrame {
 
     /**
      * Creates new form ManagePatientMenu
      */
     public String role;
-    public ManageTransactionsMenu() {
+    public ManageStockMenu() {
         initComponents();
         System.out.println("Manage patient menu");
     }
@@ -40,32 +40,32 @@ public class ManageTransactionsMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        addNewTransaction = new javax.swing.JButton();
-        editTransaction = new javax.swing.JButton();
-        deleteTransaction = new javax.swing.JButton();
+        addPatient = new javax.swing.JButton();
+        editPatient = new javax.swing.JButton();
+        deletePatient = new javax.swing.JButton();
         back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        addNewTransaction.setText("Add new transaction");
-        addNewTransaction.addActionListener(new java.awt.event.ActionListener() {
+        addPatient.setText("Add patient");
+        addPatient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addNewTransactionActionPerformed(evt);
+                addPatientActionPerformed(evt);
             }
         });
 
-        editTransaction.setText("Edit payment transaction");
-        editTransaction.addActionListener(new java.awt.event.ActionListener() {
+        editPatient.setText("Edit patient");
+        editPatient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editTransactionActionPerformed(evt);
+                editPatientActionPerformed(evt);
             }
         });
 
-        deleteTransaction.setText("Delete transaction");
-        deleteTransaction.addActionListener(new java.awt.event.ActionListener() {
+        deletePatient.setText("Delete patient");
+        deletePatient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteTransactionActionPerformed(evt);
+                deletePatientActionPerformed(evt);
             }
         });
 
@@ -81,12 +81,12 @@ public class ManageTransactionsMenu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(122, Short.MAX_VALUE)
+                .addContainerGap(128, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(editTransaction, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(addNewTransaction, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(deleteTransaction, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(125, Short.MAX_VALUE))
+                    .addComponent(editPatient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addPatient, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                    .addComponent(deletePatient, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE))
+                .addContainerGap(131, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(back)
@@ -96,11 +96,11 @@ public class ManageTransactionsMenu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(57, Short.MAX_VALUE)
-                .addComponent(addNewTransaction, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(addPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(editTransaction, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(editPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(deleteTransaction, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(deletePatient, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(78, 78, 78)
                 .addComponent(back)
                 .addGap(25, 25, 25))
@@ -118,37 +118,31 @@ public class ManageTransactionsMenu extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_backActionPerformed
 
-    private void addNewTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewTransactionActionPerformed
+    private void addPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPatientActionPerformed
         // TODO add your handling code here:
-       AddTransactionsMenu addTransaction = new AddTransactionsMenu();
-       databaseConn.fillPatientID(addTransaction.getPatientComboBox());
-       databaseConn.fillDoctorID(addTransaction.getStaffComboBox());
-       addTransaction.setVisible(true);
-       addTransaction.setRole(this.getRole());
-       dispose();
-    }//GEN-LAST:event_addNewTransactionActionPerformed
-
-    private void editTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editTransactionActionPerformed
-        // TODO add your handling code here:
-        EditTransactionsMenu editTransaction = new EditTransactionsMenu();
-        databaseConn.fillTransactionDetails(editTransaction.getTransactionCombo());
-        databaseConn.fillDoctorID(editTransaction.getStaffComboBox());
-        databaseConn.fillPatientID(editTransaction.getPatientComboBox());
-        editTransaction.setVisible(true);
-        editTransaction.setRole(this.getRole());
+        AddPatientMenu addPatient = new AddPatientMenu();
+        addPatient.setVisible(true);
+        addPatient.setRole(this.getRole());
         dispose();
-    }//GEN-LAST:event_editTransactionActionPerformed
+    }//GEN-LAST:event_addPatientActionPerformed
 
-    private void deleteTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteTransactionActionPerformed
+    private void editPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPatientActionPerformed
         // TODO add your handling code here:
-        DeleteTransactionsMenu deleteTransactions = new DeleteTransactionsMenu();
-        databaseConn.fillTransactionDetails(deleteTransactions.getTransactionCombo());
-        databaseConn.fillDoctorID(deleteTransactions.getStaffComboBox());
-        databaseConn.fillPatientID(deleteTransactions.getPatientComboBox());
-        deleteTransactions.setVisible(true);
-        deleteTransactions.setRole(this.getRole());
+        EditPatientMenu editPatient = new EditPatientMenu();
+        databaseConn.fillPatientID(editPatient.getComboBox());
+        editPatient.setVisible(true);
+        editPatient.setRole(this.getRole());
         dispose();
-    }//GEN-LAST:event_deleteTransactionActionPerformed
+    }//GEN-LAST:event_editPatientActionPerformed
+
+    private void deletePatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletePatientActionPerformed
+        // TODO add your handling code here:
+        DeletePatientMenu deletePatient = new DeletePatientMenu();
+        databaseConn.fillPatientID(deletePatient.getComboBox());
+        deletePatient.setVisible(true);
+        deletePatient.setRole(this.getRole());
+        dispose();
+    }//GEN-LAST:event_deletePatientActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,13 +161,13 @@ public class ManageTransactionsMenu extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManageTransactionsMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageStockMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManageTransactionsMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageStockMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManageTransactionsMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageStockMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManageTransactionsMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageStockMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -181,15 +175,15 @@ public class ManageTransactionsMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManageTransactionsMenu().setVisible(true);
+                new ManageStockMenu().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addNewTransaction;
+    private javax.swing.JButton addPatient;
     private javax.swing.JButton back;
-    private javax.swing.JButton deleteTransaction;
-    private javax.swing.JButton editTransaction;
+    private javax.swing.JButton deletePatient;
+    private javax.swing.JButton editPatient;
     // End of variables declaration//GEN-END:variables
 }
