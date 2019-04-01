@@ -33,7 +33,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="updateDetails" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="deleteAppointment" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
@@ -122,7 +122,7 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="updateDetails" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="deleteAppointment" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="backBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
@@ -133,7 +133,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Edit appointment details"/>
+        <Property name="text" type="java.lang.String" value="Delete appointment details"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
@@ -176,13 +176,13 @@
         <Property name="text" type="java.lang.String" value="Doctor ID:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="updateDetails">
+    <Component class="javax.swing.JButton" name="deleteAppointment">
       <Properties>
+        <Property name="text" type="java.lang.String" value="Delete appointment"/>
         <Property name="enabled" type="boolean" value="false"/>
-        <Property name="label" type="java.lang.String" value="Update details"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateDetailsActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteAppointmentActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="backBtn">

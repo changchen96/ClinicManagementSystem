@@ -121,6 +121,8 @@ public class ManageTransactionsMenu extends javax.swing.JFrame {
     private void addNewTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewTransactionActionPerformed
         // TODO add your handling code here:
        AddTransactionsMenu addTransaction = new AddTransactionsMenu();
+       databaseConn.fillPatientID(addTransaction.getPatientComboBox());
+       databaseConn.fillDoctorID(addTransaction.getStaffComboBox());
        addTransaction.setVisible(true);
        addTransaction.setRole(this.getRole());
        dispose();
