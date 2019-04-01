@@ -35,7 +35,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="deleteTransactionBtn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="133" max="32767" attributes="0"/>
+                      <EmptySpace pref="171" max="32767" attributes="0"/>
                       <Component id="backBtn" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
@@ -67,7 +67,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="selectTransaction" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="visitIDText" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="transactionIDText" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -89,7 +89,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="visitIDText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="transactionIDText" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -232,12 +232,12 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Edit transaction"/>
+        <Property name="text" type="java.lang.String" value="Delete transaction"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="deleteTransactionBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Update transaction details"/>
+        <Property name="text" type="java.lang.String" value="Delete transaction"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteTransactionBtnActionPerformed"/>
@@ -279,7 +279,7 @@
         <Property name="text" type="java.lang.String" value="Transaction ID:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="visitIDText">
+    <Component class="javax.swing.JTextField" name="transactionIDText">
       <Properties>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>

@@ -78,7 +78,7 @@ public class DeleteTransactionsMenu extends javax.swing.JFrame {
         transactionCombo = new javax.swing.JComboBox<>();
         selectTransaction = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        visitIDText = new javax.swing.JTextField();
+        transactionIDText = new javax.swing.JTextField();
 
         jButton1.setText("jButton1");
 
@@ -115,9 +115,9 @@ public class DeleteTransactionsMenu extends javax.swing.JFrame {
 
         patientCombo.setEnabled(false);
 
-        jLabel9.setText("Edit transaction");
+        jLabel9.setText("Delete transaction");
 
-        deleteTransactionBtn.setText("Update transaction details");
+        deleteTransactionBtn.setText("Delete transaction");
         deleteTransactionBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteTransactionBtnActionPerformed(evt);
@@ -142,7 +142,7 @@ public class DeleteTransactionsMenu extends javax.swing.JFrame {
 
         jLabel10.setText("Transaction ID:");
 
-        visitIDText.setEnabled(false);
+        transactionIDText.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -153,7 +153,7 @@ public class DeleteTransactionsMenu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(deleteTransactionBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
                         .addComponent(backBtn))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -181,7 +181,7 @@ public class DeleteTransactionsMenu extends javax.swing.JFrame {
                                 .addComponent(transactionCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(selectTransaction))
-                            .addComponent(visitIDText, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(transactionIDText, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -197,7 +197,7 @@ public class DeleteTransactionsMenu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(visitIDText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(transactionIDText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -247,20 +247,20 @@ public class DeleteTransactionsMenu extends javax.swing.JFrame {
 
     private void deleteTransactionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteTransactionBtnActionPerformed
         // TODO add your handling code here:
-        String visitid = visitIDText.getText();
+        String visitid = transactionIDText.getText();
         databaseConn.deleteTransactionDetails(visitid);
     }//GEN-LAST:event_deleteTransactionBtnActionPerformed
 
     private void selectTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectTransactionActionPerformed
         // TODO add your handling code here:
-        String visitid = transactionCombo.getSelectedItem().toString();
-         if (visitid.isEmpty())
+        String transactionid = transactionCombo.getSelectedItem().toString();
+         if (transactionid.isEmpty())
         {
             JOptionPane.showMessageDialog(null, "Select a visit first!");
         }
          else
          {
-            databaseConn.findTransactionInfoForEdit(visitid, visitIDText, transactionDetails, amntPaid, transactionMethod, transactionAmnt, balanceLabel, staffCombo, patientCombo);
+            databaseConn.findTransactionInfoForEdit(transactionid, transactionIDText, transactionDetails, amntPaid, transactionMethod, transactionAmnt, balanceLabel, staffCombo, patientCombo);
          }
     }//GEN-LAST:event_selectTransactionActionPerformed
 
@@ -325,7 +325,7 @@ public class DeleteTransactionsMenu extends javax.swing.JFrame {
     private javax.swing.JTextField transactionAmnt;
     private javax.swing.JComboBox<String> transactionCombo;
     private javax.swing.JTextArea transactionDetails;
+    private javax.swing.JTextField transactionIDText;
     private javax.swing.JTextField transactionMethod;
-    private javax.swing.JTextField visitIDText;
     // End of variables declaration//GEN-END:variables
 }
