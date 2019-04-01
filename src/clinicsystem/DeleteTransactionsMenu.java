@@ -247,8 +247,8 @@ public class DeleteTransactionsMenu extends javax.swing.JFrame {
 
     private void deleteTransactionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteTransactionBtnActionPerformed
         // TODO add your handling code here:
-        String visitid = transactionIDText.getText();
-        databaseConn.deleteTransactionDetails(visitid);
+        String transactionid = transactionIDText.getText();
+        databaseConn.deleteTransactionDetails(transactionid);
     }//GEN-LAST:event_deleteTransactionBtnActionPerformed
 
     private void selectTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectTransactionActionPerformed
