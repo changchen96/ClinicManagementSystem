@@ -63,7 +63,7 @@
                           </Group>
                           <Component id="balanceLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="transactionCombo" min="-2" max="-2" attributes="0"/>
+                              <Component id="visitIDCombo" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="selectTransaction" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -83,7 +83,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="transactionCombo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="visitIDCombo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="selectTransaction" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -241,10 +241,10 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Select transaction:"/>
+        <Property name="text" type="java.lang.String" value="Select visit:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="transactionCombo">
+    <Component class="javax.swing.JComboBox" name="visitIDCombo">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
@@ -264,7 +264,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel10">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Transaction ID:"/>
+        <Property name="text" type="java.lang.String" value="Visit ID:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="visitIDText">

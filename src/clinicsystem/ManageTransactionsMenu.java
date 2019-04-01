@@ -130,12 +130,7 @@ public class ManageTransactionsMenu extends javax.swing.JFrame {
 
     private void editTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editTransactionActionPerformed
         // TODO add your handling code here:
-        EditTransactionsMenu editTransaction = new EditTransactionsMenu();
-        databaseConn.fillTransactionDetails(editTransaction.getTransactionCombo());
-        databaseConn.fillDoctorID(editTransaction.getStaffComboBox());
-        databaseConn.fillPatientID(editTransaction.getPatientComboBox());
-        editTransaction.setVisible(true);
-        editTransaction.setRole(this.getRole());
+        
         dispose();
     }//GEN-LAST:event_editTransactionActionPerformed
 

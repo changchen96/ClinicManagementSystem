@@ -133,7 +133,7 @@ public class ManageVisitsMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         EditVisitMenu editVisit = new EditVisitMenu();
         editVisit.setRole(this.getRole());
-        databaseConn.fillVisitID(editVisit.getVisitComboBox());
+        databaseConn.fillVisitDetails(editVisit.getVisitComboBox());
         databaseConn.fillAppointmentID(editVisit.getAppointmentComboBox());
         databaseConn.fillDoctorID(editVisit.getDoctorComboBox());
         databaseConn.fillPatientID(editVisit.getPatientComboBox());
@@ -145,7 +145,7 @@ public class ManageVisitsMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
        DeleteVisitMenu deleteVisit = new DeleteVisitMenu();
        deleteVisit.setRole(this.getRole());
-       databaseConn.fillVisitID(deleteVisit.getVisitComboBox());
+       databaseConn.fillVisitDetails(deleteVisit.getVisitComboBox());
        databaseConn.fillAppointmentID(deleteVisit.getAppointmentComboBox());
        databaseConn.fillPatientID(deleteVisit.getPatientComboBox());
        databaseConn.fillDoctorID(deleteVisit.getDoctorComboBox());

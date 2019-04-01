@@ -32,11 +32,6 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
         return role;
     }
     
-     public javax.swing.JComboBox<String> getTransactionCombo()
-    {
-        return transactionCombo;
-    }
-    
      public javax.swing.JComboBox<String> getStaffComboBox()
     {
         return staffCombo;
@@ -75,7 +70,7 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
         addTransactionBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        transactionCombo = new javax.swing.JComboBox<>();
+        visitIDCombo = new javax.swing.JComboBox<>();
         selectTransaction = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         visitIDText = new javax.swing.JTextField();
@@ -120,7 +115,7 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Select transaction:");
+        jLabel6.setText("Select visit:");
 
         selectTransaction.setText("Select transaction");
         selectTransaction.addActionListener(new java.awt.event.ActionListener() {
@@ -129,7 +124,7 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
             }
         });
 
-        jLabel10.setText("Transaction ID:");
+        jLabel10.setText("Visit ID:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -165,7 +160,7 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
                                 .addComponent(amntPaid, javax.swing.GroupLayout.Alignment.LEADING))
                             .addComponent(balanceLabel)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(transactionCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(visitIDCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(selectTransaction))
                             .addComponent(visitIDText, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -179,7 +174,7 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(transactionCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(visitIDCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(selectTransaction))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -234,7 +229,7 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
 
     private void addTransactionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTransactionBtnActionPerformed
         // TODO add your handling code here:
-        String visitid = visitIDText.getText();
+        
         String details = transactionDetails.getText();
         Double amountpaid = Double.parseDouble(amntPaid.getText());
         String method = transactionMethod.getText();
@@ -243,12 +238,12 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
         balanceLabel.setText(balance.toString());
         String staffid = staffCombo.getItemAt(staffCombo.getSelectedIndex());
         String patientid = patientCombo.getItemAt(patientCombo.getSelectedIndex());
-        databaseConn.updateTransactionDetails(details, amountpaid, method, amount, balance, staffid, patientid, visitid);
+        databaseConn.updateTransactionDetails(details, amountpaid, method, amount, balance, staffid, patientid);
     }//GEN-LAST:event_addTransactionBtnActionPerformed
 
     private void selectTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectTransactionActionPerformed
         // TODO add your handling code here:
-        String visitid = transactionCombo.getSelectedItem().toString();
+        String visitid = visitIDCombo.getSelectedItem().toString();
          if (visitid.isEmpty())
         {
             JOptionPane.showMessageDialog(null, "Select a visit first!");
@@ -316,9 +311,9 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
     private javax.swing.JButton selectTransaction;
     private javax.swing.JComboBox<String> staffCombo;
     private javax.swing.JTextField transactionAmnt;
-    private javax.swing.JComboBox<String> transactionCombo;
     private javax.swing.JTextArea transactionDetails;
     private javax.swing.JTextField transactionMethod;
+    private javax.swing.JComboBox<String> visitIDCombo;
     private javax.swing.JTextField visitIDText;
     // End of variables declaration//GEN-END:variables
 }

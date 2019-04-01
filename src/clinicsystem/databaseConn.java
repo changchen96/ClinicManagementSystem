@@ -472,7 +472,24 @@ public class databaseConn {
           }
       }
       
-     
+      public static void fillVisitDetails(JComboBox comboBox)
+      {
+         String appointmentComboBoxQuery = "SELECT idvisit FROM visit";
+         try
+         {
+             statement = connection.prepareStatement(appointmentComboBoxQuery);
+             result = statement.executeQuery();
+             while(result.next())
+             {
+                 comboBox.addItem(result.getString("idvisit"));
+             }
+         }
+         catch (SQLException e)
+         {
+             System.out.println(e.getMessage());
+         }
+      }
+      
       public static void fillTransactionDetails(JComboBox comboBox)
       {
            String transactionComboBoxQuery = "SELECT idtransaction FROM transaction";
@@ -576,8 +593,8 @@ public class databaseConn {
            }
        }
        
-       public static void findTransactionInfoForEdit(String transactionid, 
-               JTextField transactionidtext,
+       public static void findTransactionInfoForEdit(String visitid, 
+               JTextField visitidtext,
                JTextArea transactionDetails, 
                JTextField amountpaid, 
                JTextField transactionmethod, 
@@ -590,11 +607,11 @@ public class databaseConn {
            try
            {
                statement = connection.prepareStatement(findTransactionQuery);
-               statement.setString(1, transactionid);
+               statement.setString(1, visitid);
                result = statement.executeQuery();
                while (result.next())
                {
-                   transactionidtext.setText(result.getString("idtransaction"));
+                   visitidtext.setText(result.getString("idvisit"));
                    transactionDetails.setText(result.getString("transactionDetails"));
                    amountpaid.setText(result.getString("transactionAmountPaid"));
                    transactionmethod.setText(result.getString("transactionMethod"));
@@ -610,34 +627,8 @@ public class databaseConn {
            }
        }
 
-    public static void updateTransactionDetails(
-            String details, 
-            double amntPaid, 
-            String method,
-            double transactionamnt,
-            double balance,
-            String staffid,
-            String patientid,
-            String id)
+    public static void updateTransactionDetails()
     {
-        String updateTransactionDetailsQuery = "UPDATE transaction SET transactionDetails = ?, transactionAmountPaid = ?, transactionMethod = ?, transactionAmount = ?, transactionBalance = ?, staff_idstaff = ?, patient_idpatient = ? WHERE idtransaction = ?";
-        try
-        {
-            statement = connection.prepareStatement(updateTransactionDetailsQuery);
-            statement.setString(1, details);
-            statement.setDouble(2, amntPaid);
-            statement.setString(3, method);
-            statement.setDouble(4, transactionamnt);
-            statement.setDouble(5, balance);
-            statement.setString(6, staffid);
-            statement.setString(7, patientid);
-            statement.setString(8, id);
-            statement.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Transaction details updated!");
-        }
-        catch (SQLException e)
-        {
-            System.out.println(e.getMessage());
-        }
+        
     }
 }
