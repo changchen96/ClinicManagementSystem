@@ -40,32 +40,32 @@ public class ManageStockMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        addPatient = new javax.swing.JButton();
-        editPatient = new javax.swing.JButton();
-        deletePatient = new javax.swing.JButton();
+        addStock = new javax.swing.JButton();
+        editStock = new javax.swing.JButton();
+        deleteStock = new javax.swing.JButton();
         back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        addPatient.setText("Add patient");
-        addPatient.addActionListener(new java.awt.event.ActionListener() {
+        addStock.setText("Add new equipment");
+        addStock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addPatientActionPerformed(evt);
+                addStockActionPerformed(evt);
             }
         });
 
-        editPatient.setText("Edit patient");
-        editPatient.addActionListener(new java.awt.event.ActionListener() {
+        editStock.setText("Edit existing equipment details");
+        editStock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editPatientActionPerformed(evt);
+                editStockActionPerformed(evt);
             }
         });
 
-        deletePatient.setText("Delete patient");
-        deletePatient.addActionListener(new java.awt.event.ActionListener() {
+        deleteStock.setText("Delete existing equipment");
+        deleteStock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deletePatientActionPerformed(evt);
+                deleteStockActionPerformed(evt);
             }
         });
 
@@ -81,12 +81,12 @@ public class ManageStockMenu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(128, Short.MAX_VALUE)
+                .addContainerGap(110, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(editPatient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(addPatient, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-                    .addComponent(deletePatient, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE))
-                .addContainerGap(131, Short.MAX_VALUE))
+                    .addComponent(editStock, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addStock, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(deleteStock, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(113, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(back)
@@ -96,11 +96,11 @@ public class ManageStockMenu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(57, Short.MAX_VALUE)
-                .addComponent(addPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(addStock, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(editPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(editStock, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(deletePatient, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(deleteStock, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(78, 78, 78)
                 .addComponent(back)
                 .addGap(25, 25, 25))
@@ -118,31 +118,33 @@ public class ManageStockMenu extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_backActionPerformed
 
-    private void addPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPatientActionPerformed
+    private void addStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStockActionPerformed
         // TODO add your handling code here:
-        AddPatientMenu addPatient = new AddPatientMenu();
-        addPatient.setVisible(true);
-        addPatient.setRole(this.getRole());
+        AddStockMenu addStock = new AddStockMenu();
+        databaseConn.fillStockManagerDetails(addStock.getComboBox());
+        addStock.setRole(this.getRole());
+        addStock.setVisible(true);
         dispose();
-    }//GEN-LAST:event_addPatientActionPerformed
+    }//GEN-LAST:event_addStockActionPerformed
 
-    private void editPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPatientActionPerformed
+    private void editStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editStockActionPerformed
         // TODO add your handling code here:
-        EditPatientMenu editPatient = new EditPatientMenu();
-        databaseConn.fillPatientID(editPatient.getComboBox());
-        editPatient.setVisible(true);
-        editPatient.setRole(this.getRole());
+        EditStockMenu editStock = new EditStockMenu();
+        databaseConn.fillStockID(editStock.getStockIDComboBox());
+        databaseConn.fillStockManagerDetails(editStock.getStockManagerComboBox());
+        editStock.setRole(this.getRole());
+        editStock.setVisible(true);
         dispose();
-    }//GEN-LAST:event_editPatientActionPerformed
+    }//GEN-LAST:event_editStockActionPerformed
 
-    private void deletePatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletePatientActionPerformed
+    private void deleteStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteStockActionPerformed
         // TODO add your handling code here:
         DeletePatientMenu deletePatient = new DeletePatientMenu();
         databaseConn.fillPatientID(deletePatient.getComboBox());
         deletePatient.setVisible(true);
         deletePatient.setRole(this.getRole());
         dispose();
-    }//GEN-LAST:event_deletePatientActionPerformed
+    }//GEN-LAST:event_deleteStockActionPerformed
 
     /**
      * @param args the command line arguments
@@ -181,9 +183,9 @@ public class ManageStockMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addPatient;
+    private javax.swing.JButton addStock;
     private javax.swing.JButton back;
-    private javax.swing.JButton deletePatient;
-    private javax.swing.JButton editPatient;
+    private javax.swing.JButton deleteStock;
+    private javax.swing.JButton editStock;
     // End of variables declaration//GEN-END:variables
 }

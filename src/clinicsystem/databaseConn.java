@@ -493,7 +493,7 @@ public class databaseConn {
       
       public static void fillStockManagerDetails(JComboBox comboBox)
       {
-          String stockManagerQuery = "SELECT idstaff FROM staff WHERE role = 'Stock Manager'";
+          String stockManagerQuery = "SELECT idstaff FROM staff WHERE staffRole = 'Stock Manager'";
           try
           {
               statement = connection.prepareStatement(stockManagerQuery);
@@ -687,6 +687,66 @@ public class databaseConn {
             statement.setString(4, managerID);
             statement.executeUpdate();
             JOptionPane.showMessageDialog(null, "New item added!");
+        }
+        catch (SQLException e)
+        {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public static void fillStockID(JComboBox comboBox)
+    {
+        String fillStockIDQuery = "SELECT idstock FROM stock";
+        try
+        {
+            statement = connection.prepareStatement(fillStockIDQuery);
+            result = statement.executeQuery();
+            while (result.next())
+            {
+                comboBox.addItem(result.getString("idstock"));
+            }
+        }
+        catch (SQLException e)
+        {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public static void findStockDetailsForEdit(JTextField stockid, JTextField name, JTextArea description, JTextField status, JComboBox stockmanagerid, String id)
+    {
+        String findStockDetailsQuery = "SELECT * FROM stock WHERE idstock = ?";
+        try
+        {
+            statement = connection.prepareStatement(findStockDetailsQuery);
+            statement.setString(1, id);
+            result = statement.executeQuery();
+            while (result.next())
+            {
+                stockid.setText(result.getString("idstock"));
+                name.setText(result.getString("productName"));
+                description.setText(result.getString("productDesc"));
+                status.setText(result.getString("productStatus"));
+                stockmanagerid.setSelectedItem(result.getString("staff_idstaff"));
+            }
+        }
+        catch(SQLException e)
+        {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public static void updateStockDetails(String name, String desc, String status, String id)
+    {
+        String updateStockQuery = "UPDATE stock SET productName = ?, productDesc = ?, productStatus = ? WHERE idstock = ?";
+        try
+        {
+            statement = connection.prepareStatement(updateStockQuery);
+            statement.setString(1,name);
+            statement.setString(2,desc);
+            statement.setString(3,status);
+            statement.setString(4,id);
+            statement.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Equipment details updated!");
         }
         catch (SQLException e)
         {

@@ -37,17 +37,17 @@
                       <Component id="Logout" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="manageTransactionsBtn" alignment="0" max="32767" attributes="0"/>
                           <Component id="manageVisitsBtn" alignment="0" max="32767" attributes="0"/>
-                          <Component id="adminstratorBtn" max="32767" attributes="0"/>
-                          <Component id="manageTransactionsBtn" alignment="1" max="32767" attributes="0"/>
-                          <Component id="managePatientBtn" alignment="0" max="32767" attributes="0"/>
+                          <Component id="adminstratorBtn" alignment="0" max="32767" attributes="0"/>
+                          <Component id="managePatientBtn" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <EmptySpace pref="30" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="manageAppointmentBtn" max="32767" attributes="0"/>
                           <Component id="manageStockBtn" alignment="0" max="32767" attributes="0"/>
-                          <Component id="generateReportBtn" alignment="0" min="-2" pref="151" max="-2" attributes="0"/>
+                          <Component id="generateReportBtn" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -119,7 +119,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="adminstratorBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Adminstrator functions"/>
+        <Property name="text" type="java.lang.String" value="Manage staff members"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adminstratorBtnActionPerformed"/>
@@ -127,8 +127,11 @@
     </Component>
     <Component class="javax.swing.JButton" name="manageStockBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Manage product stock"/>
+        <Property name="text" type="java.lang.String" value="Manage equipment stock"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="manageStockBtnActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="Logout">
       <Properties>

@@ -19,7 +19,7 @@ public class AddStockMenu extends javax.swing.JFrame {
     String role;
     public AddStockMenu() {
         initComponents();
-        System.out.println("Add patient menu");
+        System.out.println("Add stock menu");
     }
     
     public void setRole(String setRole)
@@ -76,7 +76,7 @@ public class AddStockMenu extends javax.swing.JFrame {
 
         jLabel7.setText("Equipment status:");
 
-        addItemBtn.setText("Add patient");
+        addItemBtn.setText("Add equipment");
         addItemBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addItemBtnActionPerformed(evt);
@@ -137,7 +137,7 @@ public class AddStockMenu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 54, Short.MAX_VALUE))
+                        .addGap(0, 72, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -148,7 +148,6 @@ public class AddStockMenu extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(stockManagerCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addItemBtn)
                     .addComponent(backBtn))
@@ -172,13 +171,20 @@ public class AddStockMenu extends javax.swing.JFrame {
         else
         {
         JOptionPane.showMessageDialog(null, "All fields are filled!");
+        String stockname = equipmentText.getText();
+        String description = equipmentDesc.getText();
+        String status = equipmentStatusTxt.getText();
+        String managerid = stockManagerCombo.getItemAt(stockManagerCombo.getSelectedIndex());
+        databaseConn.addStock(stockname, description, status, managerid);
         }
         
     }//GEN-LAST:event_addItemBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
-        
+        ManageStockMenu managestock = new ManageStockMenu();
+        managestock.setRole(this.getRole());
+        managestock.setVisible(true);
         dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 
