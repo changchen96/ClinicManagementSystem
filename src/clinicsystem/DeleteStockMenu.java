@@ -11,13 +11,13 @@ import javax.swing.JOptionPane;
  *
  * @author c7-ong
  */
-public class EditStockMenu extends javax.swing.JFrame {
+public class DeleteStockMenu extends javax.swing.JFrame {
 
     /**
      * Creates new form AddPatientMenu
      */
     String role;
-    public EditStockMenu() {
+    public DeleteStockMenu() {
         initComponents();
         System.out.println("Add patient menu");
     }
@@ -58,7 +58,7 @@ public class EditStockMenu extends javax.swing.JFrame {
         equipmentText = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         equipmentStatusTxt = new javax.swing.JTextField();
-        updateDetails = new javax.swing.JButton();
+        deleteDetails = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         equipmentDesc = new javax.swing.JTextArea();
@@ -72,7 +72,7 @@ public class EditStockMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Edit equipment menu");
+        jLabel1.setText("Delete equipment menu");
 
         jLabel2.setText("Equipment name:");
 
@@ -89,10 +89,10 @@ public class EditStockMenu extends javax.swing.JFrame {
 
         equipmentStatusTxt.setEnabled(false);
 
-        updateDetails.setText("Update equipment details");
-        updateDetails.addActionListener(new java.awt.event.ActionListener() {
+        deleteDetails.setText("Delete equipment details");
+        deleteDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateDetailsActionPerformed(evt);
+                deleteDetailsActionPerformed(evt);
             }
         });
 
@@ -140,7 +140,7 @@ public class EditStockMenu extends javax.swing.JFrame {
                                 .addComponent(jLabel5))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addComponent(updateDetails)))
+                                .addComponent(deleteDetails)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(equipmentIDCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -160,7 +160,7 @@ public class EditStockMenu extends javax.swing.JFrame {
                             .addComponent(equipmentStatusTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(stockManagerCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(equipmentIDText, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addComponent(backBtn)
                 .addGap(42, 42, 42))
         );
@@ -185,9 +185,7 @@ public class EditStockMenu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(82, 82, 82)))
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -199,7 +197,7 @@ public class EditStockMenu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(backBtn)
-                    .addComponent(updateDetails))
+                    .addComponent(deleteDetails))
                 .addContainerGap())
         );
 
@@ -211,7 +209,7 @@ public class EditStockMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_equipmentTextActionPerformed
 
-    private void updateDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateDetailsActionPerformed
+    private void deleteDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteDetailsActionPerformed
         // TODO add your handling code here:
         if (equipmentText.getText().isEmpty() || equipmentStatusTxt.getText().isEmpty() || equipmentDesc.getText().isEmpty())
         {
@@ -220,18 +218,15 @@ public class EditStockMenu extends javax.swing.JFrame {
         else
         {
         JOptionPane.showMessageDialog(null, "All fields are filled!");
-        String name = equipmentText.getText();
-        String desc = equipmentDesc.getText();
-        String status = equipmentStatusTxt.getText();
-        String id = stockManagerCombo.getItemAt(stockManagerCombo.getSelectedIndex());
-        databaseConn.updateStockDetails(name, desc, status, id);
+        String id = equipmentIDText.getText();
+        databaseConn.deleteStockDetails(id);
         }
         
-    }//GEN-LAST:event_updateDetailsActionPerformed
+    }//GEN-LAST:event_deleteDetailsActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
-        ManageStockMenu managestock = new ManageStockMenu();
+         ManageStockMenu managestock = new ManageStockMenu();
         managestock.setRole(this.getRole());
         managestock.setVisible(true);
         dispose();
@@ -270,14 +265,18 @@ public class EditStockMenu extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditStockMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeleteStockMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditStockMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeleteStockMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditStockMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeleteStockMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditStockMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeleteStockMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -286,13 +285,14 @@ public class EditStockMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditStockMenu().setVisible(true);
+                new DeleteStockMenu().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
+    private javax.swing.JButton deleteDetails;
     private javax.swing.JTextArea equipmentDesc;
     private javax.swing.JComboBox<String> equipmentIDCombo;
     private javax.swing.JTextField equipmentIDText;
@@ -308,6 +308,5 @@ public class EditStockMenu extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton selectEquipmentBtn;
     private javax.swing.JComboBox<String> stockManagerCombo;
-    private javax.swing.JButton updateDetails;
     // End of variables declaration//GEN-END:variables
 }

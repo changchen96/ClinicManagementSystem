@@ -5,6 +5,8 @@
  */
 package clinicsystem;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author c7-ong
@@ -182,6 +184,17 @@ public class AddStaffMemberMenu extends javax.swing.JFrame {
 
     private void addStaffBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStaffBtnActionPerformed
         // TODO add your handling code here:
+        if (usernameText.getText().isEmpty() || 
+                String.valueOf(passwordText.getPassword()).isEmpty() || 
+                staffNameText.getText().isEmpty() || 
+                staffRoleText.getText().isEmpty() || 
+                addressText.getText().isEmpty() || 
+                telNoText.getText().isEmpty() || DOBText.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "One or more empty fields detected! Please fill in the empty fields!");
+        }
+        else
+        {
         String username = usernameText.getText();
         String password = String.valueOf(passwordText.getPassword());
         String staffName = staffNameText.getText();
@@ -190,6 +203,7 @@ public class AddStaffMemberMenu extends javax.swing.JFrame {
         String telNo = telNoText.getText();
         String dob = DOBText.getText();
         databaseConn.addStaff(username, password, staffName, staffRole, address, telNo, dob);
+        }
     }//GEN-LAST:event_addStaffBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed

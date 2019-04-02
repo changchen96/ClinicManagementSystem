@@ -139,10 +139,11 @@ public class ManageStockMenu extends javax.swing.JFrame {
 
     private void deleteStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteStockActionPerformed
         // TODO add your handling code here:
-        DeletePatientMenu deletePatient = new DeletePatientMenu();
-        databaseConn.fillPatientID(deletePatient.getComboBox());
-        deletePatient.setVisible(true);
-        deletePatient.setRole(this.getRole());
+        DeleteStockMenu deletestock = new DeleteStockMenu();
+        databaseConn.fillStockID(deletestock.getStockIDComboBox());
+        databaseConn.fillStockManagerDetails(deletestock.getStockManagerComboBox());
+        deletestock.setRole(this.getRole());
+        deletestock.setVisible(true);
         dispose();
     }//GEN-LAST:event_deleteStockActionPerformed
 

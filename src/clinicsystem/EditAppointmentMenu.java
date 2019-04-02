@@ -242,19 +242,33 @@ public class EditAppointmentMenu extends javax.swing.JFrame {
 
     private void updateDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateDetailsActionPerformed
         // TODO add your handling code here:
+        
+        if (appointmentDetails.getText().isEmpty() || 
+                appointmentDate.getText().isEmpty() || 
+                statusCombo.getItemAt(statusCombo.getSelectedIndex()).isEmpty() || 
+                patientCombo.getItemAt(patientCombo.getSelectedIndex()).isEmpty() || 
+                doctorCombo.getItemAt(doctorCombo.getSelectedIndex()).isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "One or more empty fields detected! Please fill in the empty fields!");
+        }
+         else
+         {
         String details = appointmentDetails.getText();
         String date = appointmentDate.getText();
         String status = statusCombo.getItemAt(statusCombo.getSelectedIndex());
         String doctorID = doctorCombo.getItemAt(doctorCombo.getSelectedIndex());
         String id = appointmentID.getText();
         databaseConn.updateAppointmentDetails(details, date, status, doctorID, id);
+         }
+        
+       
     }//GEN-LAST:event_updateDetailsActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
-        ManageVisitsMenu visits = new ManageVisitsMenu();
-        visits.setVisible(true);
-        visits.setRole(this.getRole());
+        ManageAppointmentsMenu appointments = new ManageAppointmentsMenu();
+        appointments.setVisible(true);
+        appointments.setRole(this.getRole());
         dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 
@@ -274,8 +288,9 @@ public class EditAppointmentMenu extends javax.swing.JFrame {
              databaseConn.findAppointmentInfoForEdit(id, appointmentID, appointmentDetails, appointmentDate, statusCombo, patientCombo, doctorCombo);
              appointmentDetails.setEnabled(true);
              appointmentDate.setEnabled(true);
-             appointmentCombo.setEnabled(true);
+             statusCombo.setEnabled(true);
              doctorCombo.setEnabled(true);
+             patientCombo.setEnabled(true);
              updateDetails.setEnabled(true);
          }
     }//GEN-LAST:event_selectAppointmentBtnActionPerformed

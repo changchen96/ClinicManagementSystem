@@ -753,4 +753,20 @@ public class databaseConn {
             System.out.println(e.getMessage());
         }
     }
+    
+    public static void deleteStockDetails(String id)
+    {
+        String deleteStockQuery = "DELETE FROM stock WHERE idstock = ?";
+        try
+        {
+            statement = connection.prepareStatement(deleteStockQuery);
+            statement.setString(1, id);
+            statement.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Equipment details deleted!");
+        }
+        catch(SQLException e)
+        {
+            System.out.println(e.getMessage());
+        }
+    }
 }

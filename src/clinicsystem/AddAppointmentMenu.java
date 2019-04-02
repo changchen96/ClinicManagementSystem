@@ -5,6 +5,8 @@
  */
 package clinicsystem;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author c7-ong
@@ -182,12 +184,23 @@ public class AddAppointmentMenu extends javax.swing.JFrame {
 
     private void addAppointmentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAppointmentBtnActionPerformed
         // TODO add your handling code here:
-        String retrievedDetails = appointmentDetails.getText();
+         if (appointmentDetails.getText().isEmpty() || 
+                appointmentDate.getText().isEmpty() || 
+                statusCombo.getItemAt(statusCombo.getSelectedIndex()).isEmpty() || 
+                patientCombo.getItemAt(patientCombo.getSelectedIndex()).isEmpty() || 
+                doctorCombo.getItemAt(doctorCombo.getSelectedIndex()).isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "One or more empty fields detected! Please fill in the empty fields!");
+        }
+         else
+         {
+             String retrievedDetails = appointmentDetails.getText();
         String retrevedDate = appointmentDate.getText();
         String retrievedStatus = statusCombo.getItemAt(statusCombo.getSelectedIndex());
         String retrievedPatientID = patientCombo.getItemAt(patientCombo.getSelectedIndex());
         String retrievedDoctorID = doctorCombo.getItemAt(doctorCombo.getSelectedIndex());
         databaseConn.addNewAppointment(retrievedDetails, retrevedDate, retrievedStatus, retrievedPatientID, retrievedDoctorID);
+         }
         
     }//GEN-LAST:event_addAppointmentBtnActionPerformed
 
