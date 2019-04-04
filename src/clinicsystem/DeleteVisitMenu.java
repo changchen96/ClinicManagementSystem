@@ -19,7 +19,6 @@ public class DeleteVisitMenu extends javax.swing.JFrame {
     String role;
     public DeleteVisitMenu() {
         initComponents();
-        System.out.println("Delete visit menu");
     }
     
     public void setRole(String setRole)

@@ -17,7 +17,6 @@ public class ManageStockMenu extends javax.swing.JFrame {
     public String role;
     public ManageStockMenu() {
         initComponents();
-        System.out.println("Manage patient menu");
     }
     
     public void setRole(String setRole)

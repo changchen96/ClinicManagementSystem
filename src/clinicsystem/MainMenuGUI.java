@@ -19,7 +19,6 @@ public class MainMenuGUI extends javax.swing.JFrame {
     String role;
     public MainMenuGUI() {
         initComponents();
-        System.out.println("Main menu");
     }
     
     public String getRole()

@@ -17,7 +17,6 @@ public class ManageVisitsMenu extends javax.swing.JFrame {
     public String role;
     public ManageVisitsMenu() {
         initComponents();
-        System.out.println("Manage visit menu");
     }
     
     public void setRole(String setRole)

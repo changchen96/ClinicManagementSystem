@@ -23,7 +23,6 @@ public class AddStaffMemberMenu extends javax.swing.JFrame {
     final static String DATE_FORMAT = "dd/MM/yyyy";
     public AddStaffMemberMenu() {
         initComponents();
-        System.out.println("Add patient menu");
     }
     
     public void setRole(String setRole)

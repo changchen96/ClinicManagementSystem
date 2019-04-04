@@ -19,7 +19,6 @@ public class AddStockMenu extends javax.swing.JFrame {
     String role;
     public AddStockMenu() {
         initComponents();
-        System.out.println("Add stock menu");
     }
     
     public void setRole(String setRole)

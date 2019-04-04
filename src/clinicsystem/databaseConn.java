@@ -851,4 +851,27 @@ public class databaseConn {
             System.out.println(e.getMessage());
         }
     }
+     
+     public static String getDateToCompare(String idappointment, String idpatient)
+     {
+         String getDate = "SELECT appointmentDate FROM appointment WHERE idappointment = ? AND patient_idpatient = ?";
+         String retrievedDate = null;
+         try
+         {
+             statement = connection.prepareStatement(getDate);
+             statement.setString(1, idappointment);
+             statement.setString(2, idpatient);
+             result = statement.executeQuery();
+             while (result.next())
+             {
+                 retrievedDate = result.getString("appointmentDate");
+             }
+             
+         }
+         catch (SQLException e)
+         {
+             System.out.println(e.getMessage());
+         }
+         return retrievedDate;
+     }
 }

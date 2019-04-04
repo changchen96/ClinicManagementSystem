@@ -19,7 +19,6 @@ public class DeleteStockMenu extends javax.swing.JFrame {
     String role;
     public DeleteStockMenu() {
         initComponents();
-        System.out.println("Add patient menu");
     }
     
     public void setRole(String setRole)

@@ -4,10 +4,12 @@
  * and open the template in the editor.
  */
 package clinicsystem;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,11 +21,11 @@ public class EditAppointmentMenu extends javax.swing.JFrame {
     /**
      * Creates new form AddPatientMenu
      */
+    final static String DATE_FORMAT = "dd/MM/yyyy";
     String role;
     String dateFormat = "dd/mm/yyyy";
     public EditAppointmentMenu() {
         initComponents();
-        System.out.println("Edit appointments menu");
     }
     
     public void setRole(String setRole)
@@ -263,7 +265,20 @@ public class EditAppointmentMenu extends javax.swing.JFrame {
 
     private void updateDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateDetailsActionPerformed
         // TODO add your handling code here:
-        
+        boolean empty = true;
+        boolean datebool = true;
+        boolean datevalid = true;
+        Date parsedCurrDate = new Date();
+        try {
+            Date inputDate = new SimpleDateFormat(DATE_FORMAT).parse(appointmentDate.getText());
+            if (inputDate.before(parsedCurrDate))
+            {
+                JOptionPane.showMessageDialog(null, "Invalid date entered!");
+                datebool = false;
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(AddAppointmentMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
         if (appointmentDetails.getText().isEmpty() || 
                 appointmentDate.getText().isEmpty() || 
                 statusCombo.getItemAt(statusCombo.getSelectedIndex()).isEmpty() || 
@@ -271,12 +286,14 @@ public class EditAppointmentMenu extends javax.swing.JFrame {
                 doctorCombo.getItemAt(doctorCombo.getSelectedIndex()).isEmpty())
         {
             JOptionPane.showMessageDialog(null, "One or more empty fields detected! Please fill in the empty fields!");
+            empty = false;
         }
         else if (isDateValid(appointmentDate.getText()) == false)
         {
             JOptionPane.showMessageDialog(null, "Please re-enter date again!");
+            datevalid = false;
         }
-         else
+        if (datebool == true && datevalid == true && empty == true)
         {
         String details = appointmentDetails.getText();
         String date = appointmentDate.getText();

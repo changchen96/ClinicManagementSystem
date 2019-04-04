@@ -8,6 +8,9 @@ package clinicsystem;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,7 +26,6 @@ public class AddVisitMenu extends javax.swing.JFrame {
     final static String DATE_FORMAT = "dd/MM/yyyy";
     public AddVisitMenu() {
         initComponents();
-        System.out.println("Add visit menu");
     }
     
     public void setRole(String setRole)
@@ -223,16 +225,33 @@ public class AddVisitMenu extends javax.swing.JFrame {
 
     private void addVisitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addVisitActionPerformed
         // TODO add your handling code here:
+        boolean datebool = true;
+        boolean text = true;
+        boolean valid = true;
+        String retrievedDate = databaseConn.getDateToCompare(appointmentCombo.getSelectedItem().toString(), patientCombo.getSelectedItem().toString());
+        try {
+            Date apptDate = new SimpleDateFormat(DATE_FORMAT).parse(retrievedDate);
+            Date inputDate = new SimpleDateFormat(DATE_FORMAT).parse(visitDate.getText());
+            if (inputDate.before(apptDate))
+            {
+                JOptionPane.showMessageDialog(null, "Invalid date entered!");
+                datebool = false;
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(AddVisitMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
         if (visitDetails.getText().isEmpty() || visitDate.getText().isEmpty() || visitNotes.getText().isEmpty()|| appointmentCombo.getSelectedItem().toString().isEmpty() ||
                 patientCombo.getSelectedItem().toString().isEmpty() || doctorCombo.getSelectedItem().toString().isEmpty())
         {
             JOptionPane.showMessageDialog(null, "One or more empty fields detected! Please fill in the empty fields!");
+            text = false;
         }
-         else if (isDateValid(visitDate.getText()) == false)
+        if (isDateValid(visitDate.getText()) == false)
         {
             JOptionPane.showMessageDialog(null, "Please re-enter date again!");
+            valid = false;
         }
-        else
+        if (datebool == true && text == true && valid == true)
         {
         String details = visitDetails.getText();
         String date = visitDate.getText();

@@ -17,7 +17,6 @@ public class ManageAppointmentsMenu extends javax.swing.JFrame {
     public String role;
     public ManageAppointmentsMenu() {
         initComponents();
-        System.out.println("Manage appointments menu");
     }
     
     public void setRole(String setRole)

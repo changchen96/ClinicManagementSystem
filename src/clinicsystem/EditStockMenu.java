@@ -19,7 +19,6 @@ public class EditStockMenu extends javax.swing.JFrame {
     String role;
     public EditStockMenu() {
         initComponents();
-        System.out.println("Add patient menu");
     }
     
     public void setRole(String setRole)

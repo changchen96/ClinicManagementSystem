@@ -8,6 +8,9 @@ package clinicsystem;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,7 +26,6 @@ public class EditVisitMenu extends javax.swing.JFrame {
     final static String DATE_FORMAT = "dd/MM/yyyy";
     public EditVisitMenu() {
         initComponents();
-        System.out.println("Add patient menu");
     }
     
     public void setRole(String setRole)
@@ -271,6 +273,21 @@ public class EditVisitMenu extends javax.swing.JFrame {
 
     private void updateVisitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateVisitBtnActionPerformed
         // TODO add your handling code here:
+        boolean datebool = true;
+        boolean text = true;
+        boolean valid = true;
+        String retrievedDate = databaseConn.getDateToCompare(appointmentCombo.getSelectedItem().toString(), patientCombo.getSelectedItem().toString());
+        try {
+            Date apptDate = new SimpleDateFormat(DATE_FORMAT).parse(retrievedDate);
+            Date inputDate = new SimpleDateFormat(DATE_FORMAT).parse(visitDate.getText());
+            if (inputDate.before(apptDate))
+            {
+                JOptionPane.showMessageDialog(null, "Invalid date entered!");
+                datebool = false;
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(AddVisitMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
         if (visitIDText.getText().isEmpty() || visitDetails.getText().isEmpty() || visitDate.getText().isEmpty() || visitNotes.getText().isEmpty() ||
                appointmentCombo.getSelectedItem().toString().isEmpty() || patientCombo.getSelectedItem().toString().isEmpty() || doctorCombo.getSelectedItem().toString().isEmpty() )
         {
@@ -280,6 +297,8 @@ public class EditVisitMenu extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(null, "Please re-enter date again!");
         }
+        if (datebool == true && text == true && valid == true)
+        {
         String visitID = visitIDText.getText();
         String details = visitDetails.getText();
         String date = visitDate.getText();
@@ -288,6 +307,7 @@ public class EditVisitMenu extends javax.swing.JFrame {
         String patientID = patientCombo.getSelectedItem().toString();
         String doctorID = doctorCombo.getSelectedItem().toString();
         databaseConn.updateVisitDetails(details, date, notes, appointmentID, patientID, doctorID, visitID);
+        }
     }//GEN-LAST:event_updateVisitBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
