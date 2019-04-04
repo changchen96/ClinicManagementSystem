@@ -1,0 +1,10 @@
+Equipment ID:1
+Equipment name:Rubber gloves
+Equipment description:Rubber gloves for the GP	
+Equipment status:In stock
+Inserted by staff ID:4
+Equipment ID:2
+Equipment name:Paper clips
+Equipment description:Paper clips for the GP
+Equipment status:In stock
+Inserted by staff ID:4

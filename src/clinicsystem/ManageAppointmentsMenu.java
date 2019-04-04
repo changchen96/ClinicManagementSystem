@@ -145,6 +145,8 @@ public class ManageAppointmentsMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         DeleteAppointmentMenu deleteAppointment = new DeleteAppointmentMenu();
         databaseConn.fillAppointmentID(deleteAppointment.getAppointmentComboBox());
+        databaseConn.fillDoctorID(deleteAppointment.getDoctorComboBox());
+        databaseConn.fillPatientID(deleteAppointment.getPatientComboBox());
         deleteAppointment.setRole(this.getRole());
         deleteAppointment.setVisible(true);
         dispose();

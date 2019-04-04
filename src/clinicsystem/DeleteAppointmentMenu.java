@@ -243,7 +243,14 @@ public class DeleteAppointmentMenu extends javax.swing.JFrame {
     private void deleteAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteAppointmentActionPerformed
         // TODO add your handling code here:
         String id = appointmentID.getText();
-        databaseConn.deleteAppointment(id);
+        if (id.isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Select an appointment ID first!");
+        }
+        else
+        {
+            databaseConn.deleteAppointment(id);
+        }
     }//GEN-LAST:event_deleteAppointmentActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed

@@ -5,6 +5,11 @@
  */
 package clinicsystem;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author c7-ong
@@ -15,6 +20,7 @@ public class AddVisitMenu extends javax.swing.JFrame {
      * Creates new form AddPatientMenu
      */
     String role;
+    final static String DATE_FORMAT = "dd/MM/yyyy";
     public AddVisitMenu() {
         initComponents();
         System.out.println("Add visit menu");
@@ -45,6 +51,22 @@ public class AddVisitMenu extends javax.swing.JFrame {
     {
         return doctorCombo;
     }
+    
+    public boolean isDateValid(String date)
+    {
+        try
+        {
+            DateFormat format = new SimpleDateFormat(DATE_FORMAT);
+            format.setLenient(false);
+            format.parse(date);
+            return true;
+        }
+        catch (ParseException e)
+        {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -61,7 +83,7 @@ public class AddVisitMenu extends javax.swing.JFrame {
         visitDate = new javax.swing.JTextField();
         patientCombo = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        addAppointmentBtn = new javax.swing.JButton();
+        addVisit = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
         doctorCombo = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -78,7 +100,7 @@ public class AddVisitMenu extends javax.swing.JFrame {
 
         jLabel2.setText("Visit details:");
 
-        jLabel3.setText("Visit date:");
+        jLabel3.setText("Visit date (dd/mm/yyyy):");
         jLabel3.setToolTipText("");
 
         jLabel4.setText("Patient ID:");
@@ -91,10 +113,10 @@ public class AddVisitMenu extends javax.swing.JFrame {
 
         jLabel5.setText("Doctor ID:");
 
-        addAppointmentBtn.setText("Add appointment");
-        addAppointmentBtn.addActionListener(new java.awt.event.ActionListener() {
+        addVisit.setText("Add visit");
+        addVisit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addAppointmentBtnActionPerformed(evt);
+                addVisitActionPerformed(evt);
             }
         });
 
@@ -130,15 +152,11 @@ public class AddVisitMenu extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(42, 444, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(14, 14, 14)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
@@ -146,24 +164,22 @@ public class AddVisitMenu extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
+                .addComponent(addVisit)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(backBtn)
+                .addGap(87, 87, 87))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(103, 103, 103)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(appointmentCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(patientCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(doctorCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(414, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(addAppointmentBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(backBtn)
-                        .addGap(87, 87, 87))))
+                    .addComponent(appointmentCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(patientCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(doctorCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,7 +212,7 @@ public class AddVisitMenu extends javax.swing.JFrame {
                     .addComponent(doctorCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addAppointmentBtn)
+                    .addComponent(addVisit)
                     .addComponent(backBtn))
                 .addContainerGap())
         );
@@ -205,8 +221,19 @@ public class AddVisitMenu extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addAppointmentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAppointmentBtnActionPerformed
+    private void addVisitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addVisitActionPerformed
         // TODO add your handling code here:
+        if (visitDetails.getText().isEmpty() || visitDate.getText().isEmpty() || visitNotes.getText().isEmpty()|| appointmentCombo.getSelectedItem().toString().isEmpty() ||
+                patientCombo.getSelectedItem().toString().isEmpty() || doctorCombo.getSelectedItem().toString().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "One or more empty fields detected! Please fill in the empty fields!");
+        }
+         else if (isDateValid(visitDate.getText()) == false)
+        {
+            JOptionPane.showMessageDialog(null, "Please re-enter date again!");
+        }
+        else
+        {
         String details = visitDetails.getText();
         String date = visitDate.getText();
         String notes = visitNotes.getText();
@@ -214,7 +241,8 @@ public class AddVisitMenu extends javax.swing.JFrame {
         String patientID = patientCombo.getSelectedItem().toString();
         String doctorID = doctorCombo.getSelectedItem().toString();
         databaseConn.addVisit(details, date, notes, appointmentID, patientID, doctorID);
-    }//GEN-LAST:event_addAppointmentBtnActionPerformed
+        }
+    }//GEN-LAST:event_addVisitActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
@@ -267,7 +295,7 @@ public class AddVisitMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addAppointmentBtn;
+    private javax.swing.JButton addVisit;
     private javax.swing.JComboBox<String> appointmentCombo;
     private javax.swing.JButton backBtn;
     private javax.swing.JComboBox<String> doctorCombo;

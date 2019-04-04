@@ -256,7 +256,7 @@ public class DeleteStaffMemberMenu extends javax.swing.JFrame {
         String id = staffCombo.getSelectedItem().toString();
         if (id.isEmpty())
         {
-            JOptionPane.showMessageDialog(null, "Select a patient first!");
+            JOptionPane.showMessageDialog(null, "Select a staff member ID first!");
         }
         else
         {

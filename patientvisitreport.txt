@@ -1,0 +1,14 @@
+Visit ID:1
+Visit Details:John came to visit, illness described as common cold
+Visit Date:7/4/2019
+Visit Notes:Prescription given
+Appointment ID for visit:1
+Patient ID for visit:1
+Doctor ID in charge:2
+Visit ID:4
+Visit Details:Mary came to visit, she was diagnosed with common cold.	
+Visit Date:10/4/2019
+Visit Notes:Prescription given
+Appointment ID for visit:3
+Patient ID for visit:2
+Doctor ID in charge:2

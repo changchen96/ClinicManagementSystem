@@ -5,6 +5,8 @@
  */
 package clinicsystem;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author c7-ong
@@ -38,6 +40,16 @@ public class AddTransactionsMenu extends javax.swing.JFrame {
       public javax.swing.JComboBox<String> getPatientComboBox()
     {
         return patientCombo;
+    }
+      
+     public boolean isNameValid(String name)
+    {
+        return name.matches("[a-zA-Z\\s']+");
+    }
+    
+    public boolean isNumberValid(String number)
+    {
+        return number.matches("[0-9]+(\\.[0-9][0-9]?)?");
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -201,7 +213,23 @@ public class AddTransactionsMenu extends javax.swing.JFrame {
 
     private void addTransactionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTransactionBtnActionPerformed
         // TODO add your handling code here:
-        
+        if (
+                transactionDetails.getText().isEmpty() ||
+                amntPaid.getText().isEmpty() ||
+                transactionMethod.getText().isEmpty() ||
+                transactionAmnt.getText().isEmpty() ||
+                staffCombo.getItemAt(staffCombo.getSelectedIndex()).isEmpty() ||
+                patientCombo.getItemAt(patientCombo.getSelectedIndex()).isEmpty()
+                )
+        {
+             JOptionPane.showMessageDialog(null, "One or more empty fields detected! Please fill in the empty fields!");
+        }
+        else if ((isNumberValid(amntPaid.getText()) == false) || isNumberValid(transactionAmnt.getText()) == false)
+        {
+            JOptionPane.showMessageDialog(null, "Alphabets detected in a numbers-only field!");
+        }
+        else
+        {
         String details = transactionDetails.getText();
         Double amountpaid = Double.parseDouble(amntPaid.getText());
         String method = transactionMethod.getText();
@@ -211,6 +239,8 @@ public class AddTransactionsMenu extends javax.swing.JFrame {
         String staffid = staffCombo.getItemAt(staffCombo.getSelectedIndex());
         String patientid = patientCombo.getItemAt(patientCombo.getSelectedIndex());
         databaseConn.addNewTransaction(details, amountpaid, method, amount, balance, staffid, patientid);
+        }
+        
     }//GEN-LAST:event_addTransactionBtnActionPerformed
 
     /**

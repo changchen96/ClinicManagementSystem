@@ -1,0 +1,16 @@
+Transaction ID:1
+Transaction details:Payment for John for treatment
+Transaction amount paid:120.00
+Transaction method:Cash
+Transaction amount:80.00
+Transaction balance:40.00
+Staff ID in charge:2
+Patient ID for payment:1
+Transaction ID:2
+Transaction details:Payment for treatment	
+Transaction amount paid:50.00
+Transaction method:Cash
+Transaction amount:45.00
+Transaction balance:5.00
+Staff ID in charge:2
+Patient ID for payment:2

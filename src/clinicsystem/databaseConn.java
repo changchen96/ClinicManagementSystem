@@ -5,6 +5,8 @@
  */
 package clinicsystem;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -765,6 +767,86 @@ public class databaseConn {
             JOptionPane.showMessageDialog(null, "Equipment details deleted!");
         }
         catch(SQLException e)
+        {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public static void generatePatientVisitReport() throws FileNotFoundException
+    {
+        String generatePatientReportQuery = "SELECT * FROM visit";
+        try
+        {
+            statement = connection.prepareStatement(generatePatientReportQuery);
+            result = statement.executeQuery();
+            PrintWriter visitreport = new PrintWriter("patientvisitreport.txt");
+            while(result.next())
+            {
+                visitreport.println("Visit ID:" + result.getString("idvisit"));
+                visitreport.println("Visit Details:" + result.getString("visitDetails"));
+                visitreport.println("Visit Date:" + result.getString("visitDate"));
+                visitreport.println("Visit Notes:" + result.getString("visitNotes"));
+                visitreport.println("Appointment ID for visit:" + result.getString("appointment_idappointment"));
+                visitreport.println("Patient ID for visit:" + result.getString("appointment_patient_idpatient"));
+                visitreport.println("Doctor ID in charge:" + result.getString("appointment_staff_idstaff"));
+            }
+            JOptionPane.showMessageDialog(null, "Patient visit report generated!");
+            visitreport.close();
+        }
+        catch (SQLException e)
+        {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+     public static void generateTransactionReport() throws FileNotFoundException
+    {
+        String generatePatientReportQuery = "SELECT * FROM transaction";
+        try
+        {
+            statement = connection.prepareStatement(generatePatientReportQuery);
+            result = statement.executeQuery();
+            PrintWriter transactionreport = new PrintWriter("transactionreport.txt");
+            while(result.next())
+            {
+                transactionreport.println("Transaction ID:" + result.getString("idtransaction"));
+                transactionreport.println("Transaction details:" + result.getString("transactionDetails"));
+                transactionreport.println("Transaction amount paid:" + result.getString("transactionAmountPaid"));
+                transactionreport.println("Transaction method:" + result.getString("transactionMethod"));
+                transactionreport.println("Transaction amount:" + result.getString("transactionAmount"));
+                transactionreport.println("Transaction balance:" + result.getString("transactionBalance"));
+                transactionreport.println("Staff ID in charge:" + result.getString("staff_idstaff"));
+                transactionreport.println("Patient ID for payment:" + result.getString("patient_idpatient"));
+            }
+            JOptionPane.showMessageDialog(null, "Transaction report generated!");
+            transactionreport.close();
+        }
+        catch (SQLException e)
+        {
+            System.out.println(e.getMessage());
+        }
+    }
+     
+     public static void generateEquipmentReport() throws FileNotFoundException
+    {
+        String generatePatientReportQuery = "SELECT * FROM stock";
+        try
+        {
+            statement = connection.prepareStatement(generatePatientReportQuery);
+            result = statement.executeQuery();
+            PrintWriter equipmentreport = new PrintWriter("equipmentreport.txt");
+            while(result.next())
+            {
+                equipmentreport.println("Equipment ID:" + result.getString("idstock"));
+                equipmentreport.println("Equipment name:" + result.getString("productName"));
+                equipmentreport.println("Equipment description:" + result.getString("productDesc"));
+                equipmentreport.println("Equipment status:" + result.getString("productStatus"));
+                equipmentreport.println("Inserted by staff ID:" + result.getString("staff_idstaff"));
+            }
+            JOptionPane.showMessageDialog(null, "Equipment report generated!");
+            equipmentreport.close();
+        }
+        catch (SQLException e)
         {
             System.out.println(e.getMessage());
         }

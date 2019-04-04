@@ -5,6 +5,8 @@
  */
 package clinicsystem;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author c7-ong
@@ -66,7 +68,7 @@ public class DeleteVisitMenu extends javax.swing.JFrame {
         visitDate = new javax.swing.JTextField();
         patientCombo = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        addAppointmentBtn = new javax.swing.JButton();
+        deleteVisitDetails = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
         doctorCombo = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -103,10 +105,10 @@ public class DeleteVisitMenu extends javax.swing.JFrame {
 
         jLabel5.setText("Doctor ID:");
 
-        addAppointmentBtn.setText("Delete visit details");
-        addAppointmentBtn.addActionListener(new java.awt.event.ActionListener() {
+        deleteVisitDetails.setText("Delete visit details");
+        deleteVisitDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addAppointmentBtnActionPerformed(evt);
+                deleteVisitDetailsActionPerformed(evt);
             }
         });
 
@@ -152,7 +154,7 @@ public class DeleteVisitMenu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(addAppointmentBtn)
+                .addComponent(deleteVisitDetails)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(backBtn)
                 .addGap(87, 87, 87))
@@ -173,18 +175,14 @@ public class DeleteVisitMenu extends javax.swing.JFrame {
                         .addGap(17, 17, 17)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel8))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel7)
                                     .addGap(14, 14, 14)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(27, 27, 27)))
+                            .addComponent(jLabel1))
+                        .addGap(3, 3, 3)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(comboVisit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -235,7 +233,7 @@ public class DeleteVisitMenu extends javax.swing.JFrame {
                     .addComponent(doctorCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addAppointmentBtn)
+                    .addComponent(deleteVisitDetails)
                     .addComponent(backBtn))
                 .addContainerGap())
         );
@@ -244,11 +242,11 @@ public class DeleteVisitMenu extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addAppointmentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAppointmentBtnActionPerformed
+    private void deleteVisitDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteVisitDetailsActionPerformed
         // TODO add your handling code here:
         String id = visitIDText.getText();
         databaseConn.deleteVisit(id);
-    }//GEN-LAST:event_addAppointmentBtnActionPerformed
+    }//GEN-LAST:event_deleteVisitDetailsActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
@@ -265,7 +263,15 @@ public class DeleteVisitMenu extends javax.swing.JFrame {
     private void SelectVisitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectVisitBtnActionPerformed
         // TODO add your handling code here:
         String visitid = comboVisit.getItemAt(comboVisit.getSelectedIndex());
-        databaseConn.findVisitDetailsForEdit(visitid, visitIDText, visitDetails, visitDate, visitNotes, appointmentCombo, patientCombo, doctorCombo);
+         if (visitid.isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Select a visit first!");
+        }
+         else
+         {
+             databaseConn.findVisitDetailsForEdit(visitid, visitIDText, visitDetails, visitDate, visitNotes, appointmentCombo, patientCombo, doctorCombo);
+         }
+        
     }//GEN-LAST:event_SelectVisitBtnActionPerformed
 
     /**
@@ -320,10 +326,10 @@ public class DeleteVisitMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton SelectVisitBtn;
-    private javax.swing.JButton addAppointmentBtn;
     private javax.swing.JComboBox<String> appointmentCombo;
     private javax.swing.JButton backBtn;
     private javax.swing.JComboBox<String> comboVisit;
+    private javax.swing.JButton deleteVisitDetails;
     private javax.swing.JComboBox<String> doctorCombo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

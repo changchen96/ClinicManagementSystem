@@ -170,7 +170,6 @@ public class AddStockMenu extends javax.swing.JFrame {
         }
         else
         {
-        JOptionPane.showMessageDialog(null, "All fields are filled!");
         String stockname = equipmentText.getText();
         String description = equipmentDesc.getText();
         String status = equipmentStatusTxt.getText();

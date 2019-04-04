@@ -5,6 +5,9 @@
  */
 package clinicsystem;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,6 +20,7 @@ public class AddStaffMemberMenu extends javax.swing.JFrame {
      * Creates new form AddPatientMenu
      */
     String role;
+    final static String DATE_FORMAT = "dd/MM/yyyy";
     public AddStaffMemberMenu() {
         initComponents();
         System.out.println("Add patient menu");
@@ -31,6 +35,22 @@ public class AddStaffMemberMenu extends javax.swing.JFrame {
     public String getRole()
     {
         return role;
+    }
+    
+    public boolean isDateValid(String date)
+    {
+        try
+        {
+            DateFormat format = new SimpleDateFormat(DATE_FORMAT);
+            format.setLenient(false);
+            format.parse(date);
+            return true;
+        }
+        catch (ParseException e)
+        {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 
     /**
@@ -192,6 +212,10 @@ public class AddStaffMemberMenu extends javax.swing.JFrame {
                 telNoText.getText().isEmpty() || DOBText.getText().isEmpty())
         {
             JOptionPane.showMessageDialog(null, "One or more empty fields detected! Please fill in the empty fields!");
+        }
+        else if (isDateValid(DOBText.getText()) == false)
+        {
+            JOptionPane.showMessageDialog(null, "Please re-enter date again!");
         }
         else
         {

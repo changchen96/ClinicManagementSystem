@@ -46,6 +46,16 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
     {
         return patientCombo;
     }
+      
+       public boolean isNameValid(String name)
+    {
+        return name.matches("[a-zA-Z\\s']+");
+    }
+    
+    public boolean isNumberValid(String number)
+    {
+        return number.matches("[0-9]+(\\.[0-9][0-9]?)?");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -88,25 +98,37 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
 
         transactionDetails.setColumns(20);
         transactionDetails.setRows(5);
+        transactionDetails.setEnabled(false);
         jScrollPane1.setViewportView(transactionDetails);
 
         jLabel2.setText("Amount paid:");
 
+        amntPaid.setEnabled(false);
+
         jLabel3.setText("Transaction method:");
 
+        transactionMethod.setEnabled(false);
+
         jLabel4.setText("Transaction amount:");
+
+        transactionAmnt.setEnabled(false);
 
         jLabel5.setText("Balance:");
 
         balanceLabel.setText("Balance shown here");
 
-        jLabel7.setText("Staff ID:");
+        jLabel7.setText("Staff ID in charge:");
+
+        staffCombo.setEnabled(false);
 
         jLabel8.setText("Patient ID:");
+
+        patientCombo.setEnabled(false);
 
         jLabel9.setText("Edit transaction");
 
         updateTransactionBtn.setText("Update transaction details");
+        updateTransactionBtn.setEnabled(false);
         updateTransactionBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateTransactionBtnActionPerformed(evt);
@@ -130,6 +152,8 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
         });
 
         jLabel10.setText("Transaction ID:");
+
+        visitIDText.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -234,7 +258,24 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
 
     private void updateTransactionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateTransactionBtnActionPerformed
         // TODO add your handling code here:
-        String visitid = visitIDText.getText();
+         if (
+                transactionDetails.getText().isEmpty() ||
+                amntPaid.getText().isEmpty() ||
+                transactionMethod.getText().isEmpty() ||
+                transactionAmnt.getText().isEmpty() ||
+                staffCombo.getItemAt(staffCombo.getSelectedIndex()).isEmpty() ||
+                patientCombo.getItemAt(patientCombo.getSelectedIndex()).isEmpty()
+                )
+        {
+             JOptionPane.showMessageDialog(null, "One or more empty fields detected! Please fill in the empty fields!");
+        }
+         else if ((isNumberValid(amntPaid.getText()) == false) || isNumberValid(transactionAmnt.getText()) == false)
+        {
+            JOptionPane.showMessageDialog(null, "Alphabets detected in a numbers-only field!");
+        }
+         else
+         {
+             String visitid = visitIDText.getText();
         String details = transactionDetails.getText();
         Double amountpaid = Double.parseDouble(amntPaid.getText());
         String method = transactionMethod.getText();
@@ -244,6 +285,8 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
         String staffid = staffCombo.getItemAt(staffCombo.getSelectedIndex());
         String patientid = patientCombo.getItemAt(patientCombo.getSelectedIndex());
         databaseConn.updateTransactionDetails(details, amountpaid, method, amount, balance, staffid, patientid, visitid);
+         }
+        
     }//GEN-LAST:event_updateTransactionBtnActionPerformed
 
     private void selectTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectTransactionActionPerformed
@@ -256,6 +299,13 @@ public class EditTransactionsMenu extends javax.swing.JFrame {
          else
          {
             databaseConn.findTransactionInfoForEdit(visitid, visitIDText, transactionDetails, amntPaid, transactionMethod, transactionAmnt, balanceLabel, staffCombo, patientCombo);
+            transactionAmnt.setEnabled(true);
+            transactionCombo.setEnabled(true);
+            transactionDetails.setEnabled(true);
+            transactionMethod.setEnabled(true);
+            updateTransactionBtn.setEnabled(true);
+            amntPaid.setEnabled(true);
+            
          }
     }//GEN-LAST:event_selectTransactionActionPerformed
 

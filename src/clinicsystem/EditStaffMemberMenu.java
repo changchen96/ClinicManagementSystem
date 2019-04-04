@@ -5,6 +5,9 @@
  */
 package clinicsystem;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,6 +20,7 @@ public class EditStaffMemberMenu extends javax.swing.JFrame {
      * Creates new form AddPatientMenu
      */
     String role;
+    final static String DATE_FORMAT = "dd/MM/yyyy";
     public EditStaffMemberMenu() {
         initComponents();
         System.out.println("Add patient menu");
@@ -36,6 +40,22 @@ public class EditStaffMemberMenu extends javax.swing.JFrame {
     public javax.swing.JComboBox<String> getComboBox()
     {
         return staffCombo;
+    }
+    
+    public boolean isDateValid(String date)
+    {
+        try
+        {
+            DateFormat format = new SimpleDateFormat(DATE_FORMAT);
+            format.setLenient(false);
+            format.parse(date);
+            return true;
+        }
+        catch (ParseException e)
+        {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 
     /**
@@ -116,7 +136,7 @@ public class EditStaffMemberMenu extends javax.swing.JFrame {
 
         staffNameText.setEnabled(false);
 
-        jLabel9.setText("Date of birth:");
+        jLabel9.setText("Date of birth (dd/mm/yyyy):");
 
         DOBText.setEnabled(false);
 
@@ -140,42 +160,44 @@ public class EditStaffMemberMenu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(staffCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(68, 68, 68)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(selectStaffBtn))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel1)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel6)
-                                .addComponent(jLabel8)
-                                .addComponent(jLabel7)
-                                .addComponent(jLabel9))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(addressText)
-                                .addComponent(staffRoleText)
-                                .addComponent(telNoText)
-                                .addComponent(staffNameText)
-                                .addComponent(DOBText)
-                                .addComponent(passwordText, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)))
                         .addComponent(updateStaffDetailsBtn)
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(12, 12, 12)
+                            .addGap(84, 84, 84)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jLabel10)
                                 .addComponent(jLabel2))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(usernameText)
-                                .addComponent(staffIDText)))))
+                                .addComponent(staffIDText)
+                                .addComponent(usernameText)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel9)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(telNoText)
+                                .addComponent(addressText)
+                                .addComponent(staffRoleText)
+                                .addComponent(staffNameText)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(passwordText, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(DOBText)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(backBtn)
                 .addGap(42, 42, 42))
@@ -239,6 +261,23 @@ public class EditStaffMemberMenu extends javax.swing.JFrame {
 
     private void updateStaffDetailsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateStaffDetailsBtnActionPerformed
         // TODO add your handling code here:
+        if (usernameText.getText().isEmpty() || 
+                String.valueOf(passwordText.getPassword()).isEmpty() ||
+                staffNameText.getText().isEmpty() ||
+                staffRoleText.getText().isEmpty() ||
+                addressText.getText().isEmpty() ||
+                telNoText.getText().isEmpty() ||
+                DOBText.getText().isEmpty() ||
+                staffIDText.getText().isEmpty())
+        {
+             JOptionPane.showMessageDialog(null, "One or more empty fields detected! Please fill in the empty fields!");
+        }
+         else if (isDateValid(DOBText.getText()) == false)
+        {
+            JOptionPane.showMessageDialog(null, "Please re-enter date again!");
+        }
+        else
+        {
         String username = usernameText.getText();
         String password = String.valueOf(passwordText.getPassword());
         String staffName = staffNameText.getText();
@@ -248,6 +287,7 @@ public class EditStaffMemberMenu extends javax.swing.JFrame {
         String dob = DOBText.getText();
         String id = staffIDText.getText();
         databaseConn.updateStaffDetails(username, password, staffName, staffRole, address, telNo, dob, id);
+        }
     }//GEN-LAST:event_updateStaffDetailsBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed

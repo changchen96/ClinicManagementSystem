@@ -5,6 +5,9 @@
  */
 package clinicsystem;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,6 +20,7 @@ public class EditPatientMenu extends javax.swing.JFrame {
      * Creates new form EditPatientGUI
      */
     public String role;
+    final static String DATE_FORMAT = "dd/MM/yyyy";
     public EditPatientMenu() {
         initComponents();
     }
@@ -48,7 +52,32 @@ public class EditPatientMenu extends javax.swing.JFrame {
        textPatientAddress.setText(PatientAddress);
        textPatientTelNo.setText(PatientTelNo);
     }
-
+    
+     public boolean isNameValid(String name)
+    {
+        return name.matches("[a-zA-Z\\s']+");
+    }
+    
+    public boolean isNumberValid(String number)
+    {
+        return number.matches("[0-9]+");
+    }
+    
+    public boolean isDateValid(String date)
+    {
+        try
+        {
+            DateFormat format = new SimpleDateFormat(DATE_FORMAT);
+            format.setLenient(false);
+            format.parse(date);
+            return true;
+        }
+        catch (ParseException e)
+        {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -246,7 +275,38 @@ public class EditPatientMenu extends javax.swing.JFrame {
 
     private void btnSaveChangesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveChangesActionPerformed
         // TODO add your handling code here:
-
+        if (textPatientFirstName.getText().isEmpty() || 
+                textPatientLastName.getText().isEmpty() || 
+                patientGenderCombo.getSelectedIndex() == -1 || 
+                textPatientDOB.getText().isEmpty() || 
+                textPatientAddress.getText().isEmpty() ||
+                textPatientTelNo.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "One or more empty fields detected! Please fill in the empty fields!");
+        }
+        else if (isNameValid(textPatientFirstName.getText()) == false || isNameValid(textPatientLastName.getText()) == false)
+        {
+            JOptionPane.showMessageDialog(null, "Numbers detected in a alphabet-only field!");
+        }
+        else if (isNumberValid(textPatientTelNo.getText()) == false)
+        {
+            JOptionPane.showMessageDialog(null, "Alphabets detected in a numbers-only field!");
+        }
+        else if (isDateValid(textPatientDOB.getText()) == false)
+        {
+            JOptionPane.showMessageDialog(null, "Please re-enter date again!");
+        }
+        else
+        {
+        String retrievedPatientID = textPatientID.getText();
+        String retrievedFirstName = textPatientFirstName.getText();
+        String retrievedLastName = textPatientLastName.getText();
+        String retrievedGender = patientGenderCombo.getItemAt(patientGenderCombo.getSelectedIndex());
+        String retrievedDOB = textPatientDOB.getText();
+        String retrievedAddress = textPatientAddress.getText();
+        String retrievedTelNo = textPatientTelNo.getText();
+        databaseConn.updatePatients(retrievedFirstName, retrievedLastName, retrievedGender, retrievedDOB, retrievedAddress, retrievedTelNo, retrievedPatientID);
+        }
     }//GEN-LAST:event_btnSaveChangesActionPerformed
 
     /**

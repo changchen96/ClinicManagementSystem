@@ -42,6 +42,16 @@ public class EditStockMenu extends javax.swing.JFrame {
     {
         return stockManagerCombo;
     }
+    
+     public boolean isNameValid(String name)
+    {
+        return name.matches("[a-zA-Z\\s']+");
+    }
+    
+    public boolean isNumberValid(String number)
+    {
+        return number.matches("[0-9]+(\\.[0-9][0-9]?)?");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -219,11 +229,10 @@ public class EditStockMenu extends javax.swing.JFrame {
         }
         else
         {
-        JOptionPane.showMessageDialog(null, "All fields are filled!");
         String name = equipmentText.getText();
         String desc = equipmentDesc.getText();
         String status = equipmentStatusTxt.getText();
-        String id = stockManagerCombo.getItemAt(stockManagerCombo.getSelectedIndex());
+        String id = equipmentIDText.getText();
         databaseConn.updateStockDetails(name, desc, status, id);
         }
         

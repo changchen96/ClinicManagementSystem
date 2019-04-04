@@ -5,6 +5,11 @@
  */
 package clinicsystem;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author c7-ong
@@ -15,6 +20,7 @@ public class EditVisitMenu extends javax.swing.JFrame {
      * Creates new form AddPatientMenu
      */
     String role;
+    final static String DATE_FORMAT = "dd/MM/yyyy";
     public EditVisitMenu() {
         initComponents();
         System.out.println("Add patient menu");
@@ -49,6 +55,22 @@ public class EditVisitMenu extends javax.swing.JFrame {
     public javax.swing.JComboBox<String> getDoctorComboBox()
     {
         return doctorCombo;
+    }
+    
+    public boolean isDateValid(String date)
+    {
+        try
+        {
+            DateFormat format = new SimpleDateFormat(DATE_FORMAT);
+            format.setLenient(false);
+            format.parse(date);
+            return true;
+        }
+        catch (ParseException e)
+        {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -92,15 +114,19 @@ public class EditVisitMenu extends javax.swing.JFrame {
 
         jLabel4.setText("Patient ID:");
 
+        visitDate.setEnabled(false);
         visitDate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 visitDateActionPerformed(evt);
             }
         });
 
+        patientCombo.setEnabled(false);
+
         jLabel5.setText("Doctor ID:");
 
         updateVisitBtn.setText("Update visit details");
+        updateVisitBtn.setEnabled(false);
         updateVisitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateVisitBtnActionPerformed(evt);
@@ -114,16 +140,22 @@ public class EditVisitMenu extends javax.swing.JFrame {
             }
         });
 
+        doctorCombo.setEnabled(false);
+
         visitDetails.setColumns(20);
         visitDetails.setLineWrap(true);
         visitDetails.setRows(5);
+        visitDetails.setEnabled(false);
         jScrollPane1.setViewportView(visitDetails);
 
         jLabel6.setText("Appointment ID:");
 
+        appointmentCombo.setEnabled(false);
+
         visitNotes.setColumns(20);
         visitNotes.setLineWrap(true);
         visitNotes.setRows(5);
+        visitNotes.setEnabled(false);
         jScrollPane2.setViewportView(visitNotes);
 
         jLabel7.setText("Visit notes:");
@@ -136,6 +168,8 @@ public class EditVisitMenu extends javax.swing.JFrame {
         });
 
         jLabel8.setText("Visit ID:");
+
+        visitIDText.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -237,6 +271,15 @@ public class EditVisitMenu extends javax.swing.JFrame {
 
     private void updateVisitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateVisitBtnActionPerformed
         // TODO add your handling code here:
+        if (visitIDText.getText().isEmpty() || visitDetails.getText().isEmpty() || visitDate.getText().isEmpty() || visitNotes.getText().isEmpty() ||
+               appointmentCombo.getSelectedItem().toString().isEmpty() || patientCombo.getSelectedItem().toString().isEmpty() || doctorCombo.getSelectedItem().toString().isEmpty() )
+        {
+            JOptionPane.showMessageDialog(null, "One or more fields are empty! Please fill in the empty fields!");
+        }
+        else if (isDateValid(visitDate.getText()) == false)
+        {
+            JOptionPane.showMessageDialog(null, "Please re-enter date again!");
+        }
         String visitID = visitIDText.getText();
         String details = visitDetails.getText();
         String date = visitDate.getText();
@@ -262,7 +305,22 @@ public class EditVisitMenu extends javax.swing.JFrame {
     private void SelectVisitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectVisitBtnActionPerformed
         // TODO add your handling code here:
         String visitid = comboVisit.getItemAt(comboVisit.getSelectedIndex());
+        if (visitid.isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Select a visit first!");
+        }
+        else
+        {
         databaseConn.findVisitDetailsForEdit(visitid, visitIDText, visitDetails, visitDate, visitNotes, appointmentCombo, patientCombo, doctorCombo);
+        visitDate.setEnabled(true);
+        visitDetails.setEnabled(true);
+        visitNotes.setEnabled(true);
+        patientCombo.setEnabled(true);
+        doctorCombo.setEnabled(true);
+        comboVisit.setEnabled(true);
+        appointmentCombo.setEnabled(true);
+        updateVisitBtn.setEnabled(true);
+        }
     }//GEN-LAST:event_SelectVisitBtnActionPerformed
 
     /**

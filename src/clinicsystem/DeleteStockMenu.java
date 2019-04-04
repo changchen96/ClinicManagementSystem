@@ -217,7 +217,6 @@ public class DeleteStockMenu extends javax.swing.JFrame {
         }
         else
         {
-        JOptionPane.showMessageDialog(null, "All fields are filled!");
         String id = equipmentIDText.getText();
         databaseConn.deleteStockDetails(id);
         }
@@ -242,9 +241,6 @@ public class DeleteStockMenu extends javax.swing.JFrame {
         else
         {
             databaseConn.findStockDetailsForEdit(equipmentIDText, equipmentText, equipmentDesc, equipmentStatusTxt, stockManagerCombo, stockid);
-            equipmentText.setEnabled(true);
-            equipmentDesc.setEnabled(true);
-            equipmentStatusTxt.setEnabled(true);
         }
     }//GEN-LAST:event_selectEquipmentBtnActionPerformed
 

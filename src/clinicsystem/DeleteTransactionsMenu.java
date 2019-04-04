@@ -248,7 +248,14 @@ public class DeleteTransactionsMenu extends javax.swing.JFrame {
     private void deleteTransactionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteTransactionBtnActionPerformed
         // TODO add your handling code here:
         String transactionid = transactionIDText.getText();
-        databaseConn.deleteTransactionDetails(transactionid);
+        if (transactionid.isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Please select a transaction first!");
+        }
+        else
+        {
+            databaseConn.deleteTransactionDetails(transactionid);
+        }
     }//GEN-LAST:event_deleteTransactionBtnActionPerformed
 
     private void selectTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectTransactionActionPerformed
@@ -256,7 +263,7 @@ public class DeleteTransactionsMenu extends javax.swing.JFrame {
         String transactionid = transactionCombo.getSelectedItem().toString();
          if (transactionid.isEmpty())
         {
-            JOptionPane.showMessageDialog(null, "Select a visit first!");
+            JOptionPane.showMessageDialog(null, "Select a transaction first!");
         }
          else
          {

@@ -118,6 +118,11 @@ public class MainMenuGUI extends javax.swing.JFrame {
         });
 
         generateReportBtn.setText("Report generation");
+        generateReportBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generateReportBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -236,6 +241,14 @@ public class MainMenuGUI extends javax.swing.JFrame {
         managestock.setVisible(true);
         dispose();
     }//GEN-LAST:event_manageStockBtnActionPerformed
+
+    private void generateReportBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateReportBtnActionPerformed
+        // TODO add your handling code here:
+        ManageReportsMenu managereports = new ManageReportsMenu();
+        managereports.setRole(role);
+        managereports.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_generateReportBtnActionPerformed
 
     /**
      * @param args the command line arguments
