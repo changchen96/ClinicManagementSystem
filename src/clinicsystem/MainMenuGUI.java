@@ -51,7 +51,6 @@ public class MainMenuGUI extends javax.swing.JFrame {
 
         managePatientBtn = new javax.swing.JButton();
         manageAppointmentBtn = new javax.swing.JButton();
-        manageVisitsBtn = new javax.swing.JButton();
         adminstratorBtn = new javax.swing.JButton();
         manageStockBtn = new javax.swing.JButton();
         Logout = new javax.swing.JButton();
@@ -74,13 +73,6 @@ public class MainMenuGUI extends javax.swing.JFrame {
         manageAppointmentBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manageAppointmentBtnActionPerformed(evt);
-            }
-        });
-
-        manageVisitsBtn.setText("Manage visits");
-        manageVisitsBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageVisitsBtnActionPerformed(evt);
             }
         });
 
@@ -139,7 +131,6 @@ public class MainMenuGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(manageTransactionsBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(manageVisitsBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(adminstratorBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(managePatientBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
@@ -158,15 +149,13 @@ public class MainMenuGUI extends javax.swing.JFrame {
                     .addComponent(manageAppointmentBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(manageVisitsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(manageStockBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(manageStockBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(adminstratorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(adminstratorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(generateReportBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(manageTransactionsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(93, 93, 93)
+                    .addComponent(generateReportBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(manageTransactionsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(134, 134, 134)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1)
@@ -188,14 +177,6 @@ public class MainMenuGUI extends javax.swing.JFrame {
         appointments.setRole(role);
         dispose();
     }//GEN-LAST:event_manageAppointmentBtnActionPerformed
-
-    private void manageVisitsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageVisitsBtnActionPerformed
-        // TODO add your handling code here:
-        ManageVisitsMenu visits = new ManageVisitsMenu();
-        visits.setRole(role);
-        visits.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_manageVisitsBtnActionPerformed
 
     private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutActionPerformed
         // TODO add your handling code here:
@@ -295,6 +276,5 @@ public class MainMenuGUI extends javax.swing.JFrame {
     private javax.swing.JButton managePatientBtn;
     private javax.swing.JButton manageStockBtn;
     private javax.swing.JButton manageTransactionsBtn;
-    private javax.swing.JButton manageVisitsBtn;
     // End of variables declaration//GEN-END:variables
 }
